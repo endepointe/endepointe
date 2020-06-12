@@ -10,9 +10,15 @@ const Home = () => {
       <nav className="home-nav">
         <ul className="home-nav-ul">
           <li className="home-nav-ul-li">
-            <Link to="/projects"
+            <Link to="/services"
               className="home-nav-ul-li-Link">
-              Projects
+              Services
+              </Link>
+          </li>
+          <li className="home-nav-ul-li">
+            <Link to="/demos"
+              className="home-nav-ul-li-Link">
+              Demos
               </Link>
           </li>
           <li className="home-nav-ul-li">

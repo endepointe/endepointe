@@ -1,4 +1,4 @@
-import './Projects.css';
+import './Demos.css';
 import React,
 {
   useEffect
@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Projects = () => {
+const Demos = () => {
 
   const apps = [];
 
@@ -99,4 +99,4 @@ const Projects = () => {
   )
 }
 
-export default Projects;
+export default Demos;

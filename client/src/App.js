@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from './Home';
-import Projects from './Projects';
+import Demos from './Demos';
 import Contact from './Contact';
 
 function App() {
@@ -16,12 +16,12 @@ function App() {
           exact
           path="/"
           render={() =>
-            <Home></Home>
+            <Home />
           } />
         <Route
-          path="/projects"
+          path="/demos"
           render={() =>
-            <Projects />
+            <Demos />
           } />
         <Route
           path="/contact"
