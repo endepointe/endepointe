@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+;
+}
+
+/*Colors*/
+:root {
+  --app-bg-color: rgb(40, 40, 40);
+}
+/**/
+
+@media (min-width: 300px) {
+  #root {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--app-bg-color);
+  }
+}

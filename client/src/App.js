@@ -1,17 +1,35 @@
-import './App.css';
 import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import Home from './Home';
+import Projects from './Projects';
+import Contact from './Contact';
 
 function App() {
   return (
-    <main className="main">
-      <nav>
-        <ul>
-          <li>
-            <a href="#">a link</a>
-          </li>
-        </ul>
-      </nav>
-    </main>
+    <BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() =>
+            <Home></Home>
+          } />
+        <Route
+          path="/projects"
+          render={() =>
+            <Projects />
+          } />
+        <Route
+          path="/contact"
+          render={() =>
+            <Contact />
+          } />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
