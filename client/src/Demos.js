@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Demos = () => {
 
@@ -28,7 +28,7 @@ const Demos = () => {
   const showApp = (id) => {
     console.log(id);
     const appId = document.getElementById(id);
-    appId.style.display = 'block';
+    appId.style.display = 'flex';
   }
 
   const closeApp = (id) => {
@@ -37,9 +37,9 @@ const Demos = () => {
   }
 
   return (
-    <main className="projects-main">
-      <nav className="projects-nav">
-        <ul className="projects-nav-ul">
+    <main className="apps-main">
+      <nav className="apps-nav">
+        <ul className="apps-nav-ul">
           <li>
             <Link to="/">
               <FontAwesomeIcon icon={faArrowLeft} />
@@ -51,48 +51,65 @@ const Demos = () => {
       <header>
         <h1>Featured Apps</h1>
       </header>
-      <article className="project-list">
-        <section className="project">
+      <article className="app-list">
+        <section className="app">
           <article
             id="app1" className="app-modal">
-            <button onClick={() => closeApp('app1')}>
-              <FontAwesomeIcon icon={faTimes} />
-              Close
+            <button
+              className="iconCloseButton"
+              onClick={() => closeApp('app1')}>
+              <FontAwesomeIcon
+                icon={faTimesCircle} />
             </button>
             <iframe
               src="http://localhost:4001/"
               title="voting app"
               frameBorder="0"></iframe>
           </article>
-          <button onClick={() => showApp('app1')}>View App</button>
+          <button onClick={() => showApp('app1')}>
+            <div className="overlay">
+              <div className="text">Voting Demo</div>
+            </div>
+          </button>
         </section>
-        <section className="project">
+        <section className="app">
           <article
             id="app2" className="app-modal">
-            <button onClick={() => closeApp('app2')}>
-              <FontAwesomeIcon icon={faTimes} />
-              Close
+            <button
+              className="iconCloseButton"
+              onClick={() => closeApp('app2')}>
+              <FontAwesomeIcon
+                icon={faTimesCircle} />
             </button>
             <iframe
               src="http://localhost:4001/"
               title="null"
               frameBorder="0"></iframe>
           </article>
-          <button onClick={() => showApp('app2')}>View App</button>
+          <button onClick={() => showApp('app2')}>
+            <div className="overlay">
+              <div className="text">Ethereum Demo In progress</div>
+            </div>
+          </button>
         </section>
-        <section className="project">
+        <section className="app">
           <article
             id="app3" className="app-modal">
-            <button onClick={() => closeApp('app3')}>
-              <FontAwesomeIcon icon={faTimes} />
-              Close
+            <button
+              className="iconCloseButton"
+              onClick={() => closeApp('app3')}>
+              <FontAwesomeIcon icon={faTimesCircle} />
             </button>
             <iframe
               src="http://localhost:4001/"
               title="voting app"
               frameBorder="0"></iframe>
           </article>
-          <button onClick={() => showApp('app3')}>View App</button>
+          <button onClick={() => showApp('app3')}>
+            <div className="overlay">
+              <div className="text">Store Demo In Progress</div>
+            </div>
+          </button>
         </section>
       </article>
     </main>

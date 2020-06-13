@@ -39,7 +39,6 @@
     margin: 0 auto;
     padding: 0;
     color: white;
-    /* border: 1px solid white; */
     text-align: center;
     display: flex;
     flex-wrap: nowrap;
@@ -52,16 +51,17 @@
     display: flex;
     width: 0rem;
     margin-top: 1.2rem;
-    /* margin-left: 21%; */
     margin-right: auto;
     margin-bottom: 1.2rem;
     transition-property: width;
     transition-duration: 0.3s;
     text-align: center;
   }
+
 /* margins to account for the transition effect
   caused by a width of 0 to n
 */
+
   .home-nav-ul-li:nth-child(1) {
     margin-left: 19.8%;
   }
@@ -90,9 +90,16 @@
 
   .home-nav-ul-li:hover:nth-child(3) {
     border-bottom: 2px solid white;
-    width: 6.6rem;
+    width: 6.7rem;
     font-size: 2rem;
     cursor: pointer;
+  }
+
+  #testing {
+    flex: 1;
+    margin-top: 20rem;
+    text-align: center;
+    align-self: flex-end;
   }
 }
 
