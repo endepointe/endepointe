@@ -3,11 +3,8 @@ import React,
 {
   useEffect
 } from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import AppsNav from './AppsNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Demos = () => {
@@ -38,16 +35,7 @@ const Demos = () => {
 
   return (
     <main className="apps-main">
-      <nav className="apps-nav">
-        <ul className="apps-nav-ul">
-          <li>
-            <Link to="/">
-              <FontAwesomeIcon icon={faArrowLeft} />
-              <span className="homeLink">Home</span>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <AppsNav />
       <header>
         <h1>Featured Apps</h1>
       </header>

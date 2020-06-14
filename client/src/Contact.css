@@ -1,0 +1,16 @@
+form {
+  display: flex;
+  height: 375px;
+  flex-direction: column;
+  margin-top: 4rem;
+  background-color: white;
+}
+
+form > textarea {
+  flex: 1;
+  height: 5rem;
+}
+
+form > button {
+  color: black;
+}

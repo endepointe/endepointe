@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Home from './Home';
+import Services from './Services';
 import Demos from './Demos';
 import Contact from './Contact';
 
@@ -17,6 +18,11 @@ function App() {
           path="/"
           render={() =>
             <Home />
+          } />
+        <Route
+          path="/services"
+          render={() =>
+            <Services />
           } />
         <Route
           path="/demos"
