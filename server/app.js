@@ -5,12 +5,14 @@ const app = express();
 const path = require('path');
 const email = require('./routes/email');
 const port = process.env.port || 3001;
+
 var corsOptions = {
   origin: 'http://localhost:4001/',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
+
 app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // middelware

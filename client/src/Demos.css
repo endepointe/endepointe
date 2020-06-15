@@ -47,7 +47,8 @@
     background-position: center;
   }
 
-  .app > button {
+  .app > button,
+  .app > a {
     justify-self: flex-end;
     width: 100%;
     height: 100%;
@@ -55,9 +56,11 @@
     opacity: 0;
   }
 
-  .app > button:hover {
+  .app > button:hover,
+  .app > a:hover {
     background-color: rgba(230, 230, 230, .5);
     opacity: 1;
+    cursor: pointer;
   }
 
   /* Text after hover */
@@ -70,7 +73,8 @@
     z-index: 9;
   }
 
-  .app > button:hover .overlay {
+  .app > button:hover .overlay,
+  .app > a:hover .overlay {
     opacity: 1;
   }
 
