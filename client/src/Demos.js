@@ -50,7 +50,7 @@ const Demos = () => {
                 icon={faTimesCircle} />
             </button>
             <iframe
-              src="http://127.0.0.1:4001/"
+              src="http://localhost:4001/"
               title="voting app"
               frameBorder="0"></iframe>
           </article>
