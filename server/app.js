@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // middelware
-app.use('/send-email', email);
+//app.use('/send-email', email);
 
 // PRODUCTION //
 ///*
