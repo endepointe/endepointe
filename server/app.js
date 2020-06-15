@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const app = express();
 const path = require('path');
 const email = require('./routes/email');
@@ -8,7 +9,8 @@ var corsOptions = {
   origin: 'http://localhost:4001/',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-app.use(cors(corsOptions));
+app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 // middelware
