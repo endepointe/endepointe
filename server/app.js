@@ -10,7 +10,6 @@ app.use(express.json());
 
 // middelware
 app.use('/send-email', email);
-// app.use('/api/vote', voteRoute);
 
 // PRODUCTION //
 ///*
