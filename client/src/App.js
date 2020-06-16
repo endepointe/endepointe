@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import {
   BrowserRouter,
@@ -11,31 +12,33 @@ import Contact from './Contact';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() =>
-            <Home />
-          } />
-        <Route
-          path="/services"
-          render={() =>
-            <Services />
-          } />
-        <Route
-          path="/demos"
-          render={() =>
-            <Demos />
-          } />
-        <Route
-          path="/contact"
-          render={() =>
-            <Contact />
-          } />
-      </Switch>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() =>
+              <Home />
+            } />
+          <Route
+            path="/services"
+            render={() =>
+              <Services />
+            } />
+          <Route
+            path="/demos"
+            render={() =>
+              <Demos />
+            } />
+          <Route
+            path="/contact"
+            render={() =>
+              <Contact />
+            } />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
