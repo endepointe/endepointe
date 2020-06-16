@@ -47,7 +47,7 @@ const Contact = () => {
           required
           className="email"
           placeholder="Your email"
-          name="email" type="text" />
+          name="email" type="email" />
         <label htmlFor="message"></label>
         <textarea
           required
