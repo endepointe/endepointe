@@ -1,16 +1,79 @@
-form {
-  display: flex;
-  height: 375px;
-  flex-direction: column;
-  margin-top: 4rem;
-  background-color: white;
+@media (min-width:300px) {
+  header {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+  header h3 {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    height: 350px;
+    flex-direction: column;
+    margin-top: 4rem;
+    background-color: var(--app-bg-color);
+  }
+
+  form .name,
+  form .email {
+    flex: 0 1 3rem;
+    font-size: 1.2rem;
+    padding-left: 0.4rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 0.2rem;
+    border: 1px solid var(--app-bg-color);
+    color: rgb(60,60,60);
+  }
+  form .message {
+    flex: 1;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    background-color: white;
+    border-radius: 0.2rem;
+    resize: none;
+  }
+  form .name:focus,
+  form .email:focus,
+  form .message:focus {
+    outline: solid var(--button-submit-color);
+  }
+  form > button {
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: 80%;
+    max-width: 300px;
+    flex: 0 1 2rem;
+    font-size: 1.2rem;
+    background-color: var(--button-submit-color);
+    color: white;
+    border-radius: 0.2rem;
+  }
 }
 
-form > textarea {
-  flex: 1;
-  height: 5rem;
+@media (min-width: 400px) {
 }
 
-form > button {
-  color: black;
+@media (min-width: 500px) {
+}
+
+@media (min-width: 600px) {
+}
+
+@media (min-width: 700px) {
+}
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+
 }
