@@ -23,6 +23,7 @@ const Contact = () => {
       });
 
     console.log(name, email, message);
+    console.log('add nm')
 
     e.target.elements.name.value = null;
     e.target.elements.email.value = null;
