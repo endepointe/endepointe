@@ -50,12 +50,14 @@
   .home-nav-ul-li {
     display: flex;
     width: 0rem;
+    height: 2.5rem;
     margin-top: 1.2rem;
     margin-right: auto;
     margin-bottom: 1.2rem;
     transition-property: width;
-    transition-duration: 0.3s;
+    transition-duration: 0.35s;
     text-align: center;
+    border-bottom: 2px solid var(--app-bg-color);
   }
 
 /* margins to account for the transition effect
@@ -76,7 +78,7 @@
 
   .home-nav-ul-li:hover:nth-child(1) {
     border-bottom: 2px solid white;
-    width: 6.9rem;
+    width: 7rem;
     font-size: 2rem;
     cursor: pointer;
   }
@@ -132,8 +134,6 @@
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
-    .home-main {
-    }
     .home-nav {
       margin-top: 10rem; 
     }
