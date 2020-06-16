@@ -39,6 +39,7 @@
     background-color: white;
     border-radius: 0.2rem;
     resize: none;
+    color: rgb(60,60,60);
   }
   form .name:focus,
   form .email:focus,
