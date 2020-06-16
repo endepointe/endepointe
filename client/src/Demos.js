@@ -59,42 +59,37 @@ const Demos = () => {
         </section>
         <section className="app">
           <article
-            id="app2" className="app-modal">
+            id="app1" className="app-modal">
             <button
               className="iconCloseButton"
               onClick={() => closeApp('app2')}>
               <FontAwesomeIcon
                 icon={faTimesCircle} />
             </button>
-            <iframe
-              src="http://localhost:4001/"
-              title="null"
-              frameBorder="0"></iframe>
           </article>
-          <button onClick={() => showApp('app2')}>
-            <div className="overlay">
-              <div className="text">Ethereum Demo In progress</div>
-            </div>
-          </button>
+          <a href="https://vote.endepointe.com"
+            rel="noopener noreferrer"
+            content="endepointe"
+            target="_blank"> <div className="overlay">
+              <div className="text">Ethereum Demo in Progress</div>
+            </div></a>
         </section>
         <section className="app">
           <article
-            id="app3" className="app-modal">
+            id="app1" className="app-modal">
             <button
               className="iconCloseButton"
               onClick={() => closeApp('app3')}>
-              <FontAwesomeIcon icon={faTimesCircle} />
+              <FontAwesomeIcon
+                icon={faTimesCircle} />
             </button>
-            <iframe
-              src="http://localhost:4001/"
-              title="voting app"
-              frameBorder="0"></iframe>
           </article>
-          <button onClick={() => showApp('app3')}>
-            <div className="overlay">
-              <div className="text">Store Demo In Progress</div>
-            </div>
-          </button>
+          <a href="https://vote.endepointe.com"
+            rel="noopener noreferrer"
+            content="endepointe"
+            target="_blank"> <div className="overlay">
+              <div className="text">Store Demo in Progress</div>
+            </div></a>
         </section>
       </article>
     </main>
