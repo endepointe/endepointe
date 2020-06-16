@@ -49,17 +49,8 @@ const Demos = () => {
               <FontAwesomeIcon
                 icon={faTimesCircle} />
             </button>
-            {/* <iframe
-              src="https://www.endepointe.com"
-              title="voting app"
-              frameBorder="0"></iframe> */}
           </article>
-          {/* <button onClick={() => showApp('app1')}>
-            <div className="overlay">
-              <div className="text">Voting Demo</div>
-            </div>
-          </button> */}
-          <a href="https://endepointe.com"
+          <a href="https://vote.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank"> <div className="overlay">
