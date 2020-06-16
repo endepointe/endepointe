@@ -29,7 +29,7 @@
   }
 
   .home-nav {
-    margin-top: 8rem;
+    margin-top: 6rem;
     flex: 1;
     padding: 0;
   }
@@ -107,19 +107,19 @@
 
 @media (min-width: 400px) {
   .home-nav {
-    margin-top: 8.5rem;
+    margin-top: 6.5rem;
   }
 }
 
 @media (min-width: 500px) {
   .home-nav {
-    margin-top: 9rem;
+    margin-top: 7rem;
   }
 }
 
 @media (min-width: 600px) {
   .home-nav {
-    margin-top: 9.5rem;
+    margin-top: 7.5rem;
   }
 }
 
@@ -135,6 +135,6 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
     .home-nav {
-      margin-top: 10rem; 
+      margin-top: 8rem; 
     }
 }
