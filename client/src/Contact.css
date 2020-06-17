@@ -22,7 +22,8 @@
   }
 
   form .name,
-  form .email {
+  form .email,
+  form .subject {
     flex: 0 1 3rem;
     font-size: 1.2rem;
     padding-left: 0.4rem;
@@ -43,6 +44,7 @@
   }
   form .name:focus,
   form .email:focus,
+  form .subject:focus,
   form .message:focus {
     outline: solid var(--button-submit-color);
   }

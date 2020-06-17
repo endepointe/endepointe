@@ -1,20 +1,35 @@
 const nodemailer = require('nodemailer');
-const pass = require('../emailCredentials');
 const router = require('express').Router();
 
 // setup email in a bit
 
 router.post('/', async (req, res) => {
-  console.log(pass.EMAILPASS, 'ul');
-  let mailTransporter = nodemailer.createTransport({
+
+  let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'endepointe@gmail.com',
-      pass: pass.EMAILPASS,
-      subject: 'test'
+      user: process.env.EMAILACCOUNT,
+      pass: process.env.EMAILPASS,
     }
-  })
-  res.send('reached email')
+  });
+
+  // https://github.com/nodemailer/nodemailer/issues/240
+  // https://nodemailer.com/usage/using-gmail/
+  let emailDetails = {
+    from: req.body.email,
+    to: process.env.EMAILACCOUNT,
+    subject: req.body.subject,
+    text: `\n\nFrom: ${req.body.name} <${req.body.email}>\n\nSubject: ${req.body.subject}\n\nMessage: ${req.body.message}`
+  };
+
+  emailTransporter.sendMail(emailDetails, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('Error sending email')
+    } else {
+      res.status(200).send('Email sent, thank you');
+    }
+  });
 });
 
 module.exports = router;

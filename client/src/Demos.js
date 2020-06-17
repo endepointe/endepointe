@@ -22,12 +22,6 @@ const Demos = () => {
     }
   }
 
-  const showApp = (id) => {
-    console.log(id);
-    const appId = document.getElementById(id);
-    appId.style.display = 'flex';
-  }
-
   const closeApp = (id) => {
     const appId = document.getElementById(id);
     appId.style.display = 'none';
@@ -53,9 +47,11 @@ const Demos = () => {
           <a href="https://vote.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
-            target="_blank"> <div className="overlay">
+            target="_blank">
+            <div className="overlay">
               <div className="text">Voting Demo</div>
-            </div></a>
+            </div>
+          </a>
         </section>
         <section className="app">
           <article

@@ -11,22 +11,24 @@ const Contact = () => {
 
     let name = e.target.elements.name.value;
     let email = e.target.elements.email.value;
+    let subject = e.target.elements.subject.value;
     let message = e.target.elements.message.value;
 
     axios.post('/send-email', {
       name: name,
       email: email,
+      subject: subject,
       message: message
     })
       .then((response) => {
         console.log(response)
       });
 
-    console.log(name, email, message);
-    console.log('add nm')
+    console.log(name, email, subject, message);
 
     e.target.elements.name.value = null;
     e.target.elements.email.value = null;
+    e.target.elements.subject.value = null;
     e.target.elements.message.value = null;
   }
 
@@ -49,6 +51,13 @@ const Contact = () => {
           className="email"
           placeholder="Your email"
           name="email" type="email" />
+        <label htmlFor="message"></label>
+        <label htmlFor="subject"></label>
+        <input
+          required
+          className="subject"
+          placeholder="Subject"
+          name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
           required

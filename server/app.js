@@ -3,8 +3,11 @@ const cors = require('cors');
 const helmet = require('helmet');
 const app = express();
 const path = require('path');
+const dotenv = require('dotenv');
 const email = require('./routes/email');
 const port = process.env.port || 3001;
+
+dotenv.config()
 
 var corsOptions = {
   origin: 'http://localhost:4001/',
