@@ -76,26 +76,25 @@ const Contact = () => {
       <form onSubmit={sendEmail}>
         <label htmlFor="name"></label>
         <input
-          // required
+          required
           className="name"
           placeholder="Your name"
           name="name" type="text" />
         <label htmlFor="email"></label>
         <input
-          // required
+          required
           className="email"
           placeholder="Your email"
-          name="email" type="text" />
-        <label htmlFor="message"></label>
+          name="email" type="email" />
         <label htmlFor="subject"></label>
         <input
-          // required
+          required
           className="subject"
           placeholder="Subject"
           name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
-          // required
+          required
           className="message"
           name="message" id="message" placeholder="Message"></textarea>
         <button>Send</button>
