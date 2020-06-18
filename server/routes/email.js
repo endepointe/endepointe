@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
     from: req.body.email,
     to: process.env.EMAILACCOUNT,
     subject: req.body.subject,
-    text: `\n\nFrom: ${req.body.name} <${req.body.email}>\n\nSubject: ${req.body.subject}\n\nMessage: ${req.body.message}`
+    text: `\n\nFrom: ${req.body.name} <${req.body.email}>\n\nSubject: ${req.body.subject}\n\nMessage: ${req.body.message}\n\nUser IP: ${userip}`
   };
 
   emailTransporter.sendMail(emailDetails, (err, data) => {
