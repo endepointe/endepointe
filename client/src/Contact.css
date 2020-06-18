@@ -1,7 +1,9 @@
 @media (min-width:300px) {
   header {
-    width: 300px;
+    min-width: 300px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: 0;
     margin-top: 5rem;
   }
   header h3 {
@@ -14,6 +16,7 @@
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+    padding: 0;
     display: flex;
     height: 350px;
     flex-direction: column;
@@ -60,9 +63,57 @@
     border-radius: 0.2rem;
   }
   .emailResponseOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 7.7rem;
     height: 100%;
     width: 100%;
     z-index: 10;
+    opacity: 0.9;
+    background-color: var(--app-bg-color);
+  }
+  .iconFailure {
+    display: block;
+    position: relative;
+    bottom: -7rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 4rem;
+    background-color: rgba(245, 29, 5, 1);
+    border-radius: 2rem;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .iconSuccess {
+    display: block;
+    position: relative;
+    bottom: -7rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 4rem;
+    background-color: rgba(54, 173, 82, 1);
+    border-radius: 2rem;
+    opacity: 1;
+    z-index: 10;
+  }
+  .emailResponse {
+    display: block;
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto;
+    /* 320px  at 1em = 16px */
+    padding-top: 9rem;
+    padding-bottom: 10rem;
+    width: 20rem;
+    height: 1rem;
+    z-index: 10;
+    background-color: black;
+    border-radius: 50%;
   }
 }
 

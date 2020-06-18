@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
       res.status(200).send('Email sent, thank you');
     }
   });
+
 });
 
 module.exports = router;

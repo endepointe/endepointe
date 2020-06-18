@@ -1,10 +1,18 @@
 import './Contact.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import React from 'react';
+import React,
+{
+  useState
+} from 'react';
 import AppsNav from './AppsNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
+
+  const [status, setStatus] = useState(false);
 
   let history = useHistory();
   let timeoutId;
@@ -12,6 +20,7 @@ const Contact = () => {
   const handleSuccess = (info) => {
     console.log(info.data);
     document.querySelector('.emailResponse').textContent = info.data;
+    document.querySelector('.emailResponseOverlay').style.display = 'block';
     timeoutId = setInterval(showMessage, 1618);
   }
 
@@ -23,6 +32,7 @@ const Contact = () => {
 
   const handleFailure = (info) => {
     document.querySelector('.emailResponse').textContent = info.data;
+    document.querySelector('.emailResponseOverlay').style.display = 'block';
     timeoutId = setInterval(showMessage, 1618);
   }
 
@@ -42,6 +52,7 @@ const Contact = () => {
       message: message
     })
       .then((response) => {
+        setStatus(true);
         handleSuccess(response);
       })
       .catch((error) => {
@@ -71,25 +82,32 @@ const Contact = () => {
           name="name" type="text" />
         <label htmlFor="email"></label>
         <input
-          // required
+          required
           className="email"
           placeholder="Your email"
-          name="email" type="text" />
+          name="email" type="email" />
         <label htmlFor="message"></label>
         <label htmlFor="subject"></label>
         <input
-          // required
+          required
           className="subject"
           placeholder="Subject"
           name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
-          // required
+          required
           className="message"
           name="message" id="message" placeholder="Message"></textarea>
         <button>Send</button>
       </form>
       <div className="emailResponseOverlay">
+        {status ?
+          <FontAwesomeIcon className="iconSuccess"
+            size="3x"
+            icon={faCheckCircle} /> :
+          <FontAwesomeIcon className="iconFailure"
+            size="3x"
+            icon={faTimesCircle} />}
         <h1 className="emailResponse"></h1>
       </div>
     </div>

@@ -28,7 +28,7 @@ const Home = () => {
               </Link>
           </li>
         </ul>
-        <div id="testing">In testing Mode</div>
+        {/* <div id="testing">In testing Mode</div> */}
       </nav>
     </main>
   )
