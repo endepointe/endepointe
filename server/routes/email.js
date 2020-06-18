@@ -4,7 +4,6 @@ const router = require('express').Router();
 // setup email in a bit
 
 router.post('/', async (req, res) => {
-
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -24,8 +23,7 @@ router.post('/', async (req, res) => {
 
   emailTransporter.sendMail(emailDetails, (err, data) => {
     if (err) {
-      console.log(err);
-      return res.status(500).send('Error sending email')
+      res.status(500).send('Error sending email')
     } else {
       res.status(200).send('Email sent, thank you');
     }

@@ -1,9 +1,30 @@
 import './Contact.css';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import AppsNav from './AppsNav';
 
 const Contact = () => {
+
+  let history = useHistory();
+  let timeoutId;
+
+  const handleSuccess = (info) => {
+    console.log(info.data);
+    document.querySelector('.emailResponse').textContent = info.data;
+    timeoutId = setInterval(showMessage, 1618);
+  }
+
+  const showMessage = () => {
+    console.log('email message sent');
+    clearInterval(timeoutId);
+    history.push('/');
+  }
+
+  const handleFailure = (info) => {
+    document.querySelector('.emailResponse').textContent = info.data;
+    timeoutId = setInterval(showMessage, 1618);
+  }
 
   const sendEmail = (e) => {
 
@@ -21,7 +42,10 @@ const Contact = () => {
       message: message
     })
       .then((response) => {
-        console.log(response)
+        handleSuccess(response);
+      })
+      .catch((error) => {
+        handleFailure(error.response);
       });
 
     console.log(name, email, subject, message);
@@ -41,30 +65,33 @@ const Contact = () => {
       <form onSubmit={sendEmail}>
         <label htmlFor="name"></label>
         <input
-          required
+          // required
           className="name"
           placeholder="Your name"
           name="name" type="text" />
         <label htmlFor="email"></label>
         <input
-          required
+          // required
           className="email"
           placeholder="Your email"
-          name="email" type="email" />
+          name="email" type="text" />
         <label htmlFor="message"></label>
         <label htmlFor="subject"></label>
         <input
-          required
+          // required
           className="subject"
           placeholder="Subject"
           name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
-          required
+          // required
           className="message"
           name="message" id="message" placeholder="Message"></textarea>
         <button>Send</button>
       </form>
+      <div className="emailResponseOverlay">
+        <h1 className="emailResponse"></h1>
+      </div>
     </div>
   )
 }
