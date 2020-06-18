@@ -1,7 +1,11 @@
 import './Services.css';
 import React from 'react';
+import {
+  Link
+} from 'react-router-dom';
 import AppsNav from './AppsNav';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 const Services = () => {
   return (
     <div>
@@ -12,6 +16,14 @@ const Services = () => {
           <li>React SPAs</li>
           <li>Nginx Configuration</li>
         </ul>
+        <Link
+          className="servicesContact"
+          to="/contact">
+          <FontAwesomeIcon
+            className="emailIcon"
+            icon={faEnvelope} />
+            Contact
+        </Link>
       </main>
     </div>
   )

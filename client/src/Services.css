@@ -15,9 +15,18 @@
   }
   .services li {
     flex: 1;
+    font-size: 1.6rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;
+  }
+  .emailIcon {
+    margin-right: 0.8rem;
+  }
+  .servicesContact {
+    margin-top: 4rem;
+    font-size: 1.1rem;
+    text-decoration: none;
   }
 }
 @media (min-width: 400px) {
