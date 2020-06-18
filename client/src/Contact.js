@@ -71,7 +71,7 @@ const Contact = () => {
     <div>
       <AppsNav />
       <header>
-        <h3>Send me an email</h3>
+        <h3>For service inquiries, send me an email.</h3>
       </header>
       <form onSubmit={sendEmail}>
         <label htmlFor="name"></label>
