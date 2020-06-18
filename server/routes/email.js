@@ -4,6 +4,8 @@ const router = require('express').Router();
 // setup email in a bit
 
 router.post('/', async (req, res) => {
+  const userip = req.ip;
+  const useremail = req.body.email;
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -28,7 +30,8 @@ router.post('/', async (req, res) => {
       res.status(200).send('Email sent, thank you');
     }
   });
-
+  console.log(userip, useremail);
+  // res.status(200).send('Error sending email');
 });
 
 module.exports = router;

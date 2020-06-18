@@ -82,20 +82,20 @@ const Contact = () => {
           name="name" type="text" />
         <label htmlFor="email"></label>
         <input
-          required
+          // required
           className="email"
           placeholder="Your email"
-          name="email" type="email" />
+          name="email" type="text" />
         <label htmlFor="message"></label>
         <label htmlFor="subject"></label>
         <input
-          required
+          // required
           className="subject"
           placeholder="Subject"
           name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
-          required
+          // required
           className="message"
           name="message" id="message" placeholder="Message"></textarea>
         <button>Send</button>
