@@ -9,7 +9,6 @@ import AppsNav from './AppsNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { getData } from './data';
 
 const Contact = () => {
 
