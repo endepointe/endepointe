@@ -9,11 +9,12 @@ import AppsNav from './AppsNav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { getData } from './data';
 
 const Contact = () => {
 
   const [status, setStatus] = useState(false);
-
+  // getData();
   let history = useHistory();
   let timeoutId;
 
@@ -21,7 +22,7 @@ const Contact = () => {
     console.log(info.data);
     document.querySelector('.emailResponse').textContent = info.data;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
-    timeoutId = setInterval(showMessage, 1618);
+    timeoutId = setInterval(showMessage, 900);
   }
 
   const showMessage = () => {
@@ -33,7 +34,7 @@ const Contact = () => {
   const handleFailure = (info) => {
     document.querySelector('.emailResponse').textContent = info.data;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
-    timeoutId = setInterval(showMessage, 1618);
+    timeoutId = setInterval(showMessage, 900);
   }
 
   const sendEmail = (e) => {
@@ -49,7 +50,7 @@ const Contact = () => {
       name: name,
       email: email,
       subject: subject,
-      message: message
+      message: message,
     })
       .then((response) => {
         setStatus(true);

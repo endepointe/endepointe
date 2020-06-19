@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 const Home = () => {
+
   return (
     <main className="home-main">
       <nav className="home-nav">
