@@ -133,7 +133,7 @@ const Contact = () => {
           <FontAwesomeIcon className="iconFailure"
             size="3x"
             icon={faTimesCircle} />}
-        <h1 className="emailResponse"></h1>
+        <h1 className="emailResponse">.</h1>
       </div>
     </div>
   )
