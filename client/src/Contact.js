@@ -28,6 +28,7 @@ const Contact = () => {
   const showMessage = () => {
     clearInterval(timeoutId);
     history.push('/');
+    window.location.reload();
   }
 
   const handleFailure = (info) => {
@@ -64,7 +65,7 @@ const Contact = () => {
 
     e.preventDefault();
 
-    getData();
+    //getData();
 
     let name = e.target.elements.name.value;
     let email = e.target.elements.email.value;
