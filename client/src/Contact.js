@@ -13,10 +13,10 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 const Contact = () => {
 
   const [status, setStatus] = useState(false);
+  const [data, setData] = useState('');
 
   let history = useHistory();
   let timeoutId;
-  let data;
 
   const handleSuccess = (info) => {
     console.log(info.data);
@@ -51,7 +51,7 @@ const Contact = () => {
         request.setRequestHeader('Accept', 'application/json');
         request.onreadystatechange = function () {
           if (this.readyState === 4) {
-            data = this.responseText;
+            setData(this.responseText);
           }
         };
         request.send();
