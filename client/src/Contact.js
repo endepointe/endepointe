@@ -14,6 +14,8 @@ const Contact = () => {
 
   const [status, setStatus] = useState(false);
   const [data, setData] = useState('');
+  const [k, setKey] = useState('');
+  let key = '';
 
   let history = useHistory();
   let timeoutId;
@@ -39,18 +41,21 @@ const Contact = () => {
 
   // For added protection
   const getData = () => {
-    let key = '';
     let req = new XMLHttpRequest();
     req.open('GET', '/getData');
     req.setRequestHeader('Accept', 'application/json');
     req.onreadystatechange = function () {
       if (this.readyState === 4) {
         key = this.responseText;
+        setKey(this.responseText);
+        // console.log(key);
         let request = new XMLHttpRequest();
+        // console.log(key);
         request.open('GET', key);
         request.setRequestHeader('Accept', 'application/json');
         request.onreadystatechange = function () {
           if (this.readyState === 4) {
+            // console.log(this.responseText);
             setData(this.responseText);
           }
         };
@@ -58,6 +63,7 @@ const Contact = () => {
       }
     };
     req.send();
+
   }
 
   const sendEmail = (e) => {
