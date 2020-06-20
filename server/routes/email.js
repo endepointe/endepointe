@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 router.post('/', async (req, res) => {
 
-  console.log(req.socket.remoteAddress);
+  console.log(req.body.data);
 
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
       res.status(200).send('Email sent, thank you');
     }
   });
-  // res.status(200).send('Error sending email');
 });
 
 module.exports = router;

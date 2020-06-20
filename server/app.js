@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const app = express();
 const path = require('path');
 const dotenv = require('dotenv');
+const data = require('./routes/data');
 const email = require('./routes/email');
 const port = process.env.port || 3001;
 
@@ -19,6 +20,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // middelware
+app.use('/getData', data);
 app.use('/send-email', email);
 
 // PRODUCTION //

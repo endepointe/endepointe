@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import React,
 {
+  useEffect,
   useState
 } from 'react';
 import AppsNav from './AppsNav';
@@ -13,9 +14,22 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 const Contact = () => {
 
   const [status, setStatus] = useState(false);
-  // getData();
+
   let history = useHistory();
   let timeoutId;
+  let data;
+
+  useEffect(() => {
+    let request = new XMLHttpRequest();
+    request.open('GET', '/getData');
+    request.setRequestHeader('Accept', 'application/json');
+    request.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        getData(this.responseText);
+      }
+    };
+    request.send();
+  })
 
   const handleSuccess = (info) => {
     console.log(info.data);
@@ -33,7 +47,20 @@ const Contact = () => {
   const handleFailure = (info) => {
     document.querySelector('.emailResponse').textContent = info.data;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
-    timeoutId = setInterval(showMessage, 900);
+    timeoutId = setInterval(showMessage, 750);
+  }
+
+  // For added protection
+  const getData = (key) => {
+    let request = new XMLHttpRequest();
+    request.open('GET', `https://api.ipdata.co/?api-key=${key}`);
+    request.setRequestHeader('Accept', 'application/json');
+    request.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        data = this.responseText;
+      }
+    };
+    request.send();
   }
 
   const sendEmail = (e) => {
@@ -50,6 +77,7 @@ const Contact = () => {
       email: email,
       subject: subject,
       message: message,
+      data: data
     })
       .then((response) => {
         setStatus(true);
