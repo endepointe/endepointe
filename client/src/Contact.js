@@ -26,7 +26,6 @@ const Contact = () => {
   }
 
   const showMessage = () => {
-    console.log('email message sent');
     clearInterval(timeoutId);
     history.push('/');
   }
@@ -39,15 +38,26 @@ const Contact = () => {
 
   // For added protection
   const getData = () => {
-    let request = new XMLHttpRequest();
-    request.open('GET', 'https://api.ipdata.co/?api-key=541cca1364eab8b712971f932164bc52bae6c1138bb703f1b41ffe2f');
-    request.setRequestHeader('Accept', 'application/json');
-    request.onreadystatechange = function () {
+    let req = new XMLHttpRequest();
+    let key;
+    req.open('GET', '/getData');
+    req.setRequestHeader('Accept', 'application/json');
+    req.onreadystatechange = function () {
       if (this.readyState === 4) {
-        data = this.responseText;
+        key = this.responseText;
+        let request = new XMLHttpRequest();
+        request.open('GET', `https://api.ipdata.co/?api-key=${key}`);
+        request.setRequestHeader('Accept', 'application/json');
+        request.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            data = this.responseText;
+          }
+        };
+        request.send();
       }
     };
-    request.send();
+    req.send();
+
   }
 
   const sendEmail = (e) => {
@@ -75,8 +85,6 @@ const Contact = () => {
       .catch((error) => {
         handleFailure(error.response);
       });
-
-    console.log(name, email, subject, message);
 
     e.target.elements.name.value = null;
     e.target.elements.email.value = null;
