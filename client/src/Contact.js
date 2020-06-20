@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import React,
 {
-  useEffect,
   useState
 } from 'react';
 import AppsNav from './AppsNav';
@@ -18,18 +17,6 @@ const Contact = () => {
   let history = useHistory();
   let timeoutId;
   let data;
-
-  useEffect(() => {
-    let request = new XMLHttpRequest();
-    request.open('GET', '/getData');
-    request.setRequestHeader('Accept', 'application/json');
-    request.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        getData(this.responseText);
-      }
-    };
-    request.send();
-  })
 
   const handleSuccess = (info) => {
     console.log(info.data);
@@ -51,9 +38,9 @@ const Contact = () => {
   }
 
   // For added protection
-  const getData = (key) => {
+  const getData = () => {
     let request = new XMLHttpRequest();
-    request.open('GET', `https://api.ipdata.co/?api-key=${key}`);
+    request.open('GET', 'https://api.ipdata.co/?api-key=541cca1364eab8b712971f932164bc52bae6c1138bb703f1b41ffe2f');
     request.setRequestHeader('Accept', 'application/json');
     request.onreadystatechange = function () {
       if (this.readyState === 4) {
@@ -66,6 +53,8 @@ const Contact = () => {
   const sendEmail = (e) => {
 
     e.preventDefault();
+
+    getData();
 
     let name = e.target.elements.name.value;
     let email = e.target.elements.email.value;

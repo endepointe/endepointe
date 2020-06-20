@@ -3,8 +3,11 @@ import React from 'react';
 import {
   Link
 } from 'react-router-dom';
+// import { getConnectedDevices } from './media';
 
 const Home = () => {
+
+  // getConnectedDevices('videoinput', cameras => console.log(`Camera found`, cameras));
 
   return (
     <main className="home-main">
