@@ -65,7 +65,7 @@ const Contact = () => {
 
     e.preventDefault();
 
-    //getData();
+    getData();
 
     let name = e.target.elements.name.value;
     let email = e.target.elements.email.value;
