@@ -39,15 +39,15 @@ const Contact = () => {
 
   // For added protection
   const getData = () => {
+    let key = '';
     let req = new XMLHttpRequest();
-    let key;
     req.open('GET', '/getData');
     req.setRequestHeader('Accept', 'application/json');
     req.onreadystatechange = function () {
       if (this.readyState === 4) {
         key = this.responseText;
         let request = new XMLHttpRequest();
-        request.open('GET', `${key}`);
+        request.open('GET', key);
         request.setRequestHeader('Accept', 'application/json');
         request.onreadystatechange = function () {
           if (this.readyState === 4) {
@@ -58,7 +58,6 @@ const Contact = () => {
       }
     };
     req.send();
-
   }
 
   const sendEmail = (e) => {
