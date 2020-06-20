@@ -22,7 +22,7 @@ const Contact = () => {
     console.log(info.data);
     document.querySelector('.emailResponse').textContent = info.data;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
-    timeoutId = setInterval(showMessage, 900);
+    timeoutId = setInterval(showMessage, 750);
   }
 
   const showMessage = () => {
