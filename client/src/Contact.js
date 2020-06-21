@@ -25,7 +25,7 @@ const Contact = () => {
   const showMessage = () => {
     clearInterval(timeoutId);
     history.push('/');
-    window.location.reload();
+    // window.location.reload();
   }
 
   const handleFailure = (info) => {
