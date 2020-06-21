@@ -8,8 +8,6 @@ router.post('/', async (req, res) => {
       process.env.DATA2,
       process.env.DATA3,
       process.env.DATA4,
-      process.env.DATA5,
-      process.env.DATA6
     ];
 
   // res.status(200).send('something');
