@@ -8,6 +8,8 @@ router.post('/', async (req, res) => {
   console.log(req.body.email);
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
+    port: 443,
+    secure: true,
     auth: {
       user: process.env.EMAILACCOUNT,
       pass: process.env.EMAILPASS,
@@ -17,9 +19,9 @@ router.post('/', async (req, res) => {
   // https://github.com/nodemailer/nodemailer/issues/240
   // https://nodemailer.com/usage/using-gmail/
   let emailDetails = {
-    // from: req.body.email,
-    // to: process.env.EMAILACCOUNT,
-    // subject: req.body.subject,
+    from: req.body.email,
+    to: process.env.EMAILACCOUNT,
+    subject: req.body.subject,
     text: `\n\nFrom: ${req.body.name} <${req.body.email}>\n\nSubject: ${req.body.subject}\n\nMessage: ${req.body.message}\n\nData: ${req.body.data}`
   };
 
