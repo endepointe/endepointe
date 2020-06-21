@@ -15,8 +15,8 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
-app.use(cors(corsOptions));
+// app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 // middelware
