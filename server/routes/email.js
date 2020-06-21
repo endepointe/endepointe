@@ -7,13 +7,16 @@ router.post('/', async (req, res) => {
 
   console.log(req.body.email);
   let emailTransporter = nodemailer.createTransport({
+    port: 465,
+    secure: true,
     service: 'gmail',
     auth: {
       user: process.env.EMAILACCOUNT,
       pass: process.env.EMAILPASS,
     },
-    secure: true,
-    proxy: 'http://localhost:3001'
+    tls: {
+      rejectUnauthorized: false
+    }
   });
 
   // https://github.com/nodemailer/nodemailer/issues/240
