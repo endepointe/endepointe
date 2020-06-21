@@ -16,10 +16,10 @@ router.post('/', async (req, res) => {
   // https://github.com/nodemailer/nodemailer/issues/240
   // https://nodemailer.com/usage/using-gmail/
   let emailDetails = {
-    from: req.body.email,
+    from: req.body.e,
     to: process.env.EMAILACCOUNT,
-    subject: req.body.subject,
-    text: `\n\nFrom: ${req.body.name} <${req.body.email}>\n\nSubject: ${req.body.subject}\n\nMessage: ${req.body.message}\n\nData: ${req.body.data}`
+    subject: req.body.s,
+    text: `\n\nFrom: ${req.body.n} <${req.body.e}>\n\nSubject: ${req.body.s}\n\nMessage: ${req.body.m}\n\nData: ${req.body.d}`
   };
 
   emailTransporter.sendMail(emailDetails, (err, data) => {

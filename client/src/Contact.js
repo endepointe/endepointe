@@ -60,11 +60,11 @@ const Contact = () => {
     console.log(info);
 
     axios.post('/send-email', {
-      name: name,
-      email: email,
-      subject: subject,
-      message: message,
-      data: info
+      n: name,
+      e: email,
+      s: subject,
+      m: message,
+      d: info
     })
       .then((response) => {
         setStatus(true);
