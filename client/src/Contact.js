@@ -13,10 +13,6 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 const Contact = () => {
 
   const [status, setStatus] = useState(false);
-  const [data, setData] = useState('');
-  const [k, setKey] = useState('');
-  let key = '';
-
   let history = useHistory();
   let timeoutId;
 
@@ -40,49 +36,35 @@ const Contact = () => {
   }
 
   // For added protection
-  const getData = () => {
-    let req = new XMLHttpRequest();
-    req.open('GET', '/getData');
-    req.setRequestHeader('Accept', 'application/json');
-    req.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        key = this.responseText;
-        setKey(this.responseText);
-        // console.log(key);
-        let request = new XMLHttpRequest();
-        // console.log(key);
-        request.open('GET', key);
-        request.setRequestHeader('Accept', 'application/json');
-        request.onreadystatechange = function () {
-          if (this.readyState === 4) {
-            // console.log(this.responseText);
-            setData(this.responseText);
-          }
-        };
-        request.send();
-      }
-    };
-    req.send();
-
-  }
-
-  const sendEmail = (e) => {
-
+  const getData = (e) => {
     e.preventDefault();
-
-    getData();
-
     let name = e.target.elements.name.value;
     let email = e.target.elements.email.value;
     let subject = e.target.elements.subject.value;
     let message = e.target.elements.message.value;
+    e.target.elements.name.value = null;
+    e.target.elements.email.value = null;
+    e.target.elements.subject.value = null;
+    e.target.elements.message.value = null;
+    let x = Math.floor(Math.random() * Math.floor(6));
+    axios.post('/getData', {
+      val: x
+    }).then(response => {
+      axios.get(`${response.data}`)
+        .then(response => sendEmail(JSON.stringify(response.data), name, email, subject, message));
+    });
+  }
+
+  const sendEmail = (info, name, email, subject, message) => {
+
+    console.log(info);
 
     axios.post('/send-email', {
       name: name,
       email: email,
       subject: subject,
       message: message,
-      data: data
+      data: info
     })
       .then((response) => {
         setStatus(true);
@@ -91,11 +73,6 @@ const Contact = () => {
       .catch((error) => {
         handleFailure(error.response);
       });
-
-    e.target.elements.name.value = null;
-    e.target.elements.email.value = null;
-    e.target.elements.subject.value = null;
-    e.target.elements.message.value = null;
   }
 
   return (
@@ -104,7 +81,7 @@ const Contact = () => {
       <header>
         <h3>For service inquiries, send me an email.</h3>
       </header>
-      <form onSubmit={sendEmail}>
+      <form onSubmit={getData}>
         <label htmlFor="name"></label>
         <input
           required

@@ -10,7 +10,8 @@ import Services from './Services';
 import Demos from './Demos';
 import Contact from './Contact';
 
-function App() {
+const App = () => {
+
   return (
     <div className="App">
       <BrowserRouter>
