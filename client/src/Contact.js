@@ -42,7 +42,7 @@ const Contact = () => {
     let email = e.target.elements.email.value;
     let subject = e.target.elements.subject.value;
     let message = e.target.elements.message.value;
-    let x = Math.floor(Math.random() * Math.floor(6));
+    let x = Math.floor(Math.random() * Math.floor(4));
     axios.post('/getData', {
       val: x
     }).then(response => {
