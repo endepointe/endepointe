@@ -71,8 +71,6 @@ const Contact = () => {
     document.querySelector('.email').value = null;
     document.querySelector('.subject').value = null;
     document.querySelector('.message').value = null;
-
-
   }
 
   return (

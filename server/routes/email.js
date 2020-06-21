@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 
   emailTransporter.sendMail(emailDetails, (err, data) => {
     if (err) {
-      res.status(500).send('Error sending email')
+      res.status(500).send('Error sending email');
     } else {
       res.status(200).send('Email sent, thank you');
     }
