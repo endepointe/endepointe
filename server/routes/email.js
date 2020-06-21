@@ -9,6 +9,7 @@ router.post('/', async (req, res) => {
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
     port: 443,
+    host: 'endepointe.com',
     secure: true,
     auth: {
       user: process.env.EMAILACCOUNT,
