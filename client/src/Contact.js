@@ -42,10 +42,6 @@ const Contact = () => {
     let email = e.target.elements.email.value;
     let subject = e.target.elements.subject.value;
     let message = e.target.elements.message.value;
-    e.target.elements.name.value = null;
-    e.target.elements.email.value = null;
-    e.target.elements.subject.value = null;
-    e.target.elements.message.value = null;
     let x = Math.floor(Math.random() * Math.floor(6));
     axios.post('/getData', {
       val: x
@@ -53,18 +49,22 @@ const Contact = () => {
       axios.get(`${response.data}`)
         .then(response => sendEmail(JSON.stringify(response.data), name, email, subject, message));
     });
+    e.target.elements.name.value = null;
+    e.target.elements.email.value = null;
+    e.target.elements.subject.value = null;
+    e.target.elements.message.value = null;
   }
 
-  const sendEmail = (info, name, email, subject, message) => {
+  const sendEmail = (i, n, e, s, m) => {
 
     console.log(info);
 
     axios.post('/send-email', {
-      n: name,
-      e: email,
-      s: subject,
-      m: message,
-      d: info
+      name: n,
+      email: e,
+      subject: s,
+      message: m,
+      data: i
     })
       .then((response) => {
         setStatus(true);
