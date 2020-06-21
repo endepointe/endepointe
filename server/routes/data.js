@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   console.log(req.body.val);
   const dataArray =
     [
@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
       process.env.DATA6
     ];
 
+  // res.status(200).send('something');
   res.status(200).send(dataArray[req.body.val]);
 });
 

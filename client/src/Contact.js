@@ -17,8 +17,7 @@ const Contact = () => {
   let timeoutId;
 
   const handleSuccess = (info) => {
-    console.log(info.data);
-    document.querySelector('.emailResponse').textContent = info.data;
+    document.querySelector('.emailResponse').textContent = info;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
     timeoutId = setInterval(showMessage, 750);
   }
@@ -30,7 +29,7 @@ const Contact = () => {
   }
 
   const handleFailure = (info) => {
-    document.querySelector('.emailResponse').textContent = info.data;
+    document.querySelector('.emailResponse').textContent = info;
     document.querySelector('.emailResponseOverlay').style.display = 'block';
     timeoutId = setInterval(showMessage, 750);
   }
@@ -38,39 +37,42 @@ const Contact = () => {
   // For added protection
   const getData = (e) => {
     e.preventDefault();
-    let name = e.target.elements.name.value;
-    let email = e.target.elements.email.value;
-    let subject = e.target.elements.subject.value;
-    let message = e.target.elements.message.value;
     let x = Math.floor(Math.random() * Math.floor(4));
     axios.post('/getData', {
       val: x
     }).then(response => {
       axios.get(`${response.data}`)
-        .then(response => sendEmail(JSON.stringify(response.data), name, email, subject, message));
+        .then(response => sendEmail(JSON.stringify(response.data)));
     });
-    e.target.elements.name.value = null;
-    e.target.elements.email.value = null;
-    e.target.elements.subject.value = null;
-    e.target.elements.message.value = null;
   }
 
-  const sendEmail = (i, n, e, s, m) => {
+  const sendEmail = (i) => {
+    let name = document.querySelector('.name').value;
+    let email = document.querySelector('.email').value;
+    let subject = document.querySelector('.subject').value;
+    let message = document.querySelector('.message').value;
 
     axios.post('/send-email', {
-      name: n,
-      email: e,
-      subject: s,
-      message: m,
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
       data: i
     })
       .then((response) => {
         setStatus(true);
-        handleSuccess(response);
+        handleSuccess(response.data);
       })
       .catch((error) => {
-        handleFailure(error.response);
+        handleFailure(error.response.data);
       });
+
+    document.querySelector('.name').value = null;
+    document.querySelector('.email').value = null;
+    document.querySelector('.subject').value = null;
+    document.querySelector('.message').value = null;
+
+
   }
 
   return (
