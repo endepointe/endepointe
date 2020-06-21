@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
       user: process.env.EMAILACCOUNT,
       pass: process.env.EMAILPASS,
     },
+    secure: true,
     proxy: 'http://localhost:3001'
   });
 
