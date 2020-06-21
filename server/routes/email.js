@@ -11,7 +11,8 @@ router.post('/', async (req, res) => {
     auth: {
       user: process.env.EMAILACCOUNT,
       pass: process.env.EMAILPASS,
-    }
+    },
+    proxy: 'http:localhost:3001'
   });
 
   // https://github.com/nodemailer/nodemailer/issues/240
