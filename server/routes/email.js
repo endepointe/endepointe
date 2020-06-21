@@ -5,6 +5,7 @@ const router = require('express').Router();
 
 router.post('/', async (req, res) => {
 
+  console.log(req.body.email);
   let emailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
