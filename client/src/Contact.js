@@ -57,8 +57,6 @@ const Contact = () => {
 
   const sendEmail = (i, n, e, s, m) => {
 
-    console.log(info);
-
     axios.post('/send-email', {
       name: n,
       email: e,
