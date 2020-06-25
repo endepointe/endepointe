@@ -47,6 +47,13 @@
     background-position: center;
   }
 
+  .app:nth-child(3) {
+    background-image: url('./images/store.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   .app > button,
   .app > a {
     justify-self: flex-end;
