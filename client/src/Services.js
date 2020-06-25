@@ -15,6 +15,8 @@ const Services = () => {
           <li>Stripe Payments</li>
           <li>React SPAs</li>
           <li>Nginx Configuration</li>
+          <li>Postgres DBA</li>
+          <li>Mongoose DBA</li>
         </ul>
         <Link
           className="servicesContact"
