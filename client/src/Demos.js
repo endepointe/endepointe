@@ -63,7 +63,7 @@ const Demos = () => {
                 icon={faTimesCircle} />
             </button>
           </article>
-          <a href="https://vote.endepointe.com"
+          <a href="https://endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank"> <div className="overlay">
@@ -80,11 +80,11 @@ const Demos = () => {
                 icon={faTimesCircle} />
             </button>
           </article>
-          <a href="https://vote.endepointe.com"
+          <a href="https://store.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank"> <div className="overlay">
-              <div className="text">Store Demo in Progress</div>
+              <div className="text">Store Demo</div>
             </div></a>
         </section>
       </article>
