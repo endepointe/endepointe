@@ -39,19 +39,17 @@ const Demos = () => {
             id="app1" className="app-modal">
             <button
               className="iconCloseButton"
-              onClick={() => closeApp('app1')}>
+              onClick={() => closeApp('app3')}>
               <FontAwesomeIcon
                 icon={faTimesCircle} />
             </button>
           </article>
-          <a href="https://vote.endepointe.com"
+          <a href="https://store.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
-            target="_blank">
-            <div className="overlay">
-              <div className="text">Voting Demo</div>
-            </div>
-          </a>
+            target="_blank"> <div className="overlay">
+              <div className="text">Store Demo</div>
+            </div></a>
         </section>
         <section className="app">
           <article
@@ -75,17 +73,19 @@ const Demos = () => {
             id="app1" className="app-modal">
             <button
               className="iconCloseButton"
-              onClick={() => closeApp('app3')}>
+              onClick={() => closeApp('app1')}>
               <FontAwesomeIcon
                 icon={faTimesCircle} />
             </button>
           </article>
-          <a href="https://store.endepointe.com"
+          <a href="https://vote.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
-            target="_blank"> <div className="overlay">
-              <div className="text">Store Demo</div>
-            </div></a>
+            target="_blank">
+            <div className="overlay">
+              <div className="text">Voting Demo</div>
+            </div>
+          </a>
         </section>
       </article>
     </main>
