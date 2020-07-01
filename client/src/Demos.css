@@ -41,14 +41,14 @@
   }
 
   .app:nth-child(1) {
-    background-image: url('./images/vote.png');
+    background-image: url('./images/store.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
 
   .app:nth-child(3) {
-    background-image: url('./images/store.png');
+    background-image: url('./images/vote.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
