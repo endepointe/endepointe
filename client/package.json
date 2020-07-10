@@ -38,7 +38,9 @@
   },
   "description": "A little place I call home",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.2.0"
+  },
   "author": "ende",
   "license": "MIT",
   "proxy": "http://localhost:3001"
