@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import Services from './Services';
-import Demos from './Demos';
+import Templates from './Templates';
 import Contact from './Contact';
 
 const App = () => {
@@ -28,9 +28,9 @@ const App = () => {
               <Services />
             } />
           <Route
-            path="/demos"
+            path="/templates"
             render={() =>
-              <Demos />
+              <Templates />
             } />
           <Route
             path="/contact"

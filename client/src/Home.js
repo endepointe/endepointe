@@ -20,9 +20,9 @@ const Home = () => {
               </Link>
           </li>
           <li className="home-nav-ul-li">
-            <Link to="/demos"
+            <Link to="/templates"
               className="home-nav-ul-li-Link">
-              Demos
+              Templates
               </Link>
           </li>
           <li className="home-nav-ul-li">

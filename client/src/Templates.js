@@ -1,4 +1,4 @@
-import './Demos.css';
+import './Templates.css';
 import React,
 {
   useEffect
@@ -48,7 +48,7 @@ const Demos = () => {
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank"> <div className="overlay">
-              <div className="text">Store Demo</div>
+              <div className="text">Store Template</div>
             </div></a>
         </section>
         <section className="app">
@@ -65,7 +65,7 @@ const Demos = () => {
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank"> <div className="overlay">
-              <div className="text">Ethereum Demo in Progress</div>
+              <div className="text">Ethereum Template in Progress</div>
             </div></a>
         </section>
         <section className="app">
@@ -83,7 +83,7 @@ const Demos = () => {
             content="endepointe"
             target="_blank">
             <div className="overlay">
-              <div className="text">Voting Demo</div>
+              <div className="text">Voting Template</div>
             </div>
           </a>
         </section>
