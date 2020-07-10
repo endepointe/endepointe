@@ -1,4 +1,7 @@
 @media (min-width:300px) {
+  .contact {
+    margin-bottom: 3rem;
+  }
   header {
     min-width: 300px;
     max-width: 100%;

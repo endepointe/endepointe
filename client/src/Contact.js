@@ -74,7 +74,7 @@ const Contact = () => {
   }
 
   return (
-    <div>
+    <div className="contact">
       <AppsNav />
       <header>
         <h3>For service inquiries, send me an email.</h3>

@@ -30,8 +30,8 @@ const Demos = () => {
   return (
     <main className="apps-main">
       <AppsNav />
-      <header>
-        <h1>Featured Apps</h1>
+      <header className="apps-header">
+        <h1 className="apps-header-h1">Project Templates</h1>
       </header>
       <article className="app-list">
         <section className="app">
