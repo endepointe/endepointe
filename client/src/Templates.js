@@ -78,12 +78,12 @@ const Demos = () => {
                 icon={faTimesCircle} />
             </button>
           </article>
-          <a href="https://vote.endepointe.com"
+          <a href="https://ecomm1.endepointe.com"
             rel="noopener noreferrer"
             content="endepointe"
             target="_blank">
             <div className="overlay">
-              <div className="text">Voting Template</div>
+              <div className="text">Ecomm Value Template</div>
             </div>
           </a>
         </section>
