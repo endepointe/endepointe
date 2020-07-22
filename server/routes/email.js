@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 
   emailTransporter.sendMail(emailDetails, (err, data) => {
     if (err) {
-      console.log(err, process.env.EMAILACCOUNT, process.env.EMAILPASS);
+      // console.log(err, process.env.EMAILACCOUNT, process.env.EMAILPASS);
       res.status(500).send('Error sending email');
     } else {
       res.status(200).send('Email sent, thank you');
