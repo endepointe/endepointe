@@ -25,7 +25,7 @@ const Contact = () => {
   const showMessage = () => {
     clearInterval(timeoutId);
     history.push('/');
-    window.location.reload();
+    // window.location.reload();
   }
 
   const handleFailure = (info) => {
@@ -84,23 +84,27 @@ const Contact = () => {
         <input
           required
           className="name"
+          value="testname"
           placeholder="Your name"
           name="name" type="text" />
         <label htmlFor="email"></label>
         <input
           required
           className="email"
+          value="test@test.com"
           placeholder="Your email"
           name="email" type="email" />
         <label htmlFor="subject"></label>
         <input
           required
           className="subject"
+          value="test"
           placeholder="Subject"
           name="subject" type="text" />
         <label htmlFor="message"></label>
         <textarea
           required
+          value="testmsg"
           className="message"
           name="message" id="message" placeholder="Message"></textarea>
         <button>Send</button>
