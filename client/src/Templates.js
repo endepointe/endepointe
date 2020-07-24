@@ -83,7 +83,7 @@ const Demos = () => {
             content="endepointe"
             target="_blank">
             <div className="overlay">
-              <div className="text">Ecomm Value Template (in dev)</div>
+              <div className="text">Ecomm Slider Template (in dev)</div>
             </div>
           </a>
         </section>
