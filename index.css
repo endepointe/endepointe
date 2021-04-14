@@ -1,0 +1,9 @@
+
+:root {
+  --light-black: #161616;
+}
+
+* {
+  background-color: var(--light-black);
+}
+                                                                               
