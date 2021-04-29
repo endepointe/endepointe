@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./default.css">
   <link rel="stylesheet" href="./navbar_1.css">
+  <link rel="stylesheet" href="./navbar_2.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
   <title>Navbars</title>
@@ -19,7 +20,7 @@
       <ul class="navbar_1_logo">
         <li>
           <a href="#">
-            Expand=None
+            Navbar_1 = {Expand: 'None';}
           </a>
         </li>
       </ul>
@@ -42,7 +43,7 @@
             <a>
         </li>
         <li>
-          <a href="#">
+          <a class="disabled" href="#">
             Disabled
           </a>
         </li>
@@ -62,14 +63,23 @@
             </li>
           </ul>
         </li>
-        <li>
-          <input type="text" placeholder="search">
+        <li class="navbar_1_search">
+          <input type="text" placeholder="Search">
         </li>
-
       </ul>
     </div>
   </nav>
   <!-- end navbar_1 -->
+
+  <!-- navbar_2 -->
+  <nav class="navbar_2">
+    <ul>
+      <li>
+        <a class="" href="#">Home</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- end navbar_2 -->
   <script src="./navbar_1.js"></script>
 </body>
 
