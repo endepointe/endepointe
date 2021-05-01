@@ -1,4 +1,43 @@
 .navbar_2 {
-  height: 50px;
-  background-color: green;
+  position: relative;
+  margin-top: 1rem;
+  height: 62px;
+  background-color: var(--metallic-grey);
+  justify-content: space-between;
+}
+
+.navbar_2 > ul {
+  justify-content: space-between;
+  flex: 0 0 150px;
+}
+
+.navbar_2 li:nth-child(1) {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.navbar_2 li {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0.5rem;
+}
+
+.navbar_2 a:nth-child(1) {
+  color: rgba(255,255,255,0.75);
+}
+.navbar_2 a {
+  color: rgba(172, 48, 48, 0.55);
+}
+
+.navbar_2 input {
+  height: 42px;
+  margin-right: 0.5rem;
+  padding: 0 0.4rem;
+  font-size: 16px;
+  border-radius: 0.3rem;
+  flex: 0 0 100px;
+}
+
+.active {
+  text-decoration: underline;
 }

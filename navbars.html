@@ -6,9 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./default.css">
+  <link rel="stylesheet" href="./colors.css">
   <link rel="stylesheet" href="./layout.css">
   <link rel="stylesheet" href="./navbar_1.css">
   <link rel="stylesheet" href="./navbar_2.css">
+  <link rel="stylesheet" href="./navbar_3.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
   <title>Navbars</title>
@@ -21,7 +23,7 @@
       <ul class="navbar_1_logo">
         <li>
           <a href="#">
-            Navbar_1 = {Expand: 'None';}
+            Navbar_1
           </a>
         </li>
       </ul>
@@ -74,14 +76,53 @@
 
   <!-- navbar_2 -->
   <nav class="navbar_2 row">
-    <ul>
+    <ul class="row">
       <li>
-        <a class="" href="#">Home</a>
+        <a class="" href="#">Navbar_2</a>
+      </li>
+      <li>
+        <a class="active" href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">Link</a>
+      </li>
+    </ul>
+    <input type="text" placeholder="Search">
+  </nav>
+  <!-- end navbar_2 -->
+
+  <!-- navbar_3 -->
+  <nav class="navbar_3 col">
+    <ul class="row">
+      <li>
+        <a href="">Sm Expand</a>
+      </li>
+      <li>
+        <button id="navbar_3_menu_btn" class="menu_btn col">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+      </li>
+    </ul>
+    <ul id="navbar_3_menu_list" class="col menu_list">
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">Link</a>
+      </li>
+      <li>
+        <a href="#">Disabled</a>
+      </li>
+      <li>
+        <a href="#">Dropdown</a>
       </li>
     </ul>
   </nav>
-  <!-- end navbar_2 -->
+  <!-- end navbar_3 -->
   <script src="./navbar_1.js"></script>
+  <script src="./navbar_3.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background-color: #212529;
+  background-color: var(--metallic-grey);
   color: white;
 }
 
@@ -48,7 +48,7 @@
 .navbar_1_dropdown_inner {
   position: relative;
   display: inline-block;
-  background-color: #212529;
+  background-color: var(--metallic-grey);
   width: 100%;
 }
 

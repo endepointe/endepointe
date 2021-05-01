@@ -1,0 +1,36 @@
+.navbar_3 {
+  background-color: var(--metallic-grey);
+  height: 62px;
+  margin-top: 1rem;
+}
+.navbar_3 ul:nth-child(1) {
+  justify-content: space-between;
+  margin: 0 0.3rem;
+}
+.navbar_3 a {
+  color: rgba(255,255,255,0.45);
+}
+.navbar_3 .menu_btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 0.3rem;
+  height: 42px;
+  width: 52px;
+  align-items: center;
+}
+@media screen and (min-width: 0px) {
+  .navbar_3 .menu_btn div {
+    width: 32px; 
+    height: 3px;
+    background-color: rgba(255,255,255,0.55);
+    flex: 0 0 2px;
+    margin: 0.2rem 0;
+  }
+  .navbar_3 .menu_btn div:nth-child(2) {
+    margin: 0.3rem 0;
+  }
+  .navbar_3 .menu_list {
+    visibility: hidden;
+    display: none;
+  }
+}
