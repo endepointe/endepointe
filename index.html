@@ -5,14 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="default.css">
+  <link rel="stylesheet" href="navbar.css">
   <title>EndePointe</title>
 </head>
 
 <body>
   <nav class="navbar">
     <div class="logo">
-      <h4>EP</h4>
+      <h1>EP</h1>
     </div>
 
     <ul class="navbar-nav">
@@ -43,10 +46,12 @@
 
   <div id="side-menu" class="side-nav">
     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-    <a href="#">Templates</a>
-    <a href="#">Projects</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <div class="nav-links">
+      <a href="#">Templates</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
 
   <div id="main">
@@ -58,7 +63,7 @@
       <h1>Templates</h1>
     </section>
   </main>
-  <script src="index.js"></script>
+  <script src="navbar.js"></script>
 </body>
 
 </html>

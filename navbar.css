@@ -1,0 +1,119 @@
+:root {
+  --light-black: #161616;
+  --eggshell: #fcfcfc;
+  --dark-green: #21261f;
+  --light-green: #525451;
+}
+
+@media screen and (min-width: 0px) {
+  .navbar {
+    background-color: var(--dark-green);
+    overflow: hidden;
+    height: 63px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    width: 60px;
+  }
+
+  .logo h1 {
+    margin: 0 auto;
+    font-size: 24px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  .navbar-nav {
+    display: flex;
+  }
+
+  .navbar-nav li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    color: white;
+  }
+
+  .navbar a, 
+  .nav-links a {
+    font-size: 22px;
+  }
+
+  .navbar a:hover {
+    background-color: var(--light-green);
+  }
+
+  /* Side-nav */
+  /* *** */
+  .side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: var(--dark-green);
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 80px;
+    transition: 0.5s;
+  } 
+
+  .side .nav-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-align: center;
+    padding: 20px 0px;
+    color: var(--eggshel);
+    display: block;
+    transition: 0.3s;
+  }
+
+  .side-nav a:hover {
+    background-color: var(--light-green);
+  }
+
+  .side-nav .btn-close {
+    position: absolute;
+    top: 0;
+    right: 22px;
+    font-size: 46px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+
+  .side-nav .btn-close:hover {
+    background-color: var(--dark-green);
+    font-weight: 600;
+    transition: font-size 0.3s;
+  }
+}
+
+@media screen and (max-width: 568px){
+  .navbar-nav {
+    display: none;
+  }
+} 
+
+@media screen and (min-width: 568px) {
+  .open-slide {
+    display: none;
+  }
+}
