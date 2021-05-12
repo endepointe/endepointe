@@ -8,7 +8,8 @@ export default function Navbar() {
       </div>
       <ul className="flex-2">
         <li>
-          <a className="">Projects</a>
+          <a href="#"
+            className="">Projects</a>
         </li>
       </ul>
     </nav>
