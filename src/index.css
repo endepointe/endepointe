@@ -1,10 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind logo;
 
 @layer base {
   body {
     margin: 0;
     padding: 0;
+  }
+  /* disabling text selection */
+  /*
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+  - https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting 
+  */
+  #logo {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  }
+  #ende {
+    color: white;
+    font-family: 'Bungee Outline';
+  }
+  #pointe {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    font-family: 'Bungee';
   }
 }
