@@ -14,7 +14,7 @@ export default function Navbar() {
       </div>
       <ul className="flex-1">
         <li className="flex justify-end">
-          <a href="#"
+          <a href="http://localhost:3000"
             className="">Projects</a>
         </li>
       </ul>

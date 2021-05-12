@@ -22,10 +22,16 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
   }
+  /* 
+  https://fonts.google.com/specimen/Bungee+Outline#standard-styles
+  */
   #ende {
     color: white;
     font-family: 'Bungee Outline';
   }
+  /* 
+  https://fonts.google.com/specimen/Bungee+Hairline#standard-styles
+  */
   #pointe {
     writing-mode: vertical-rl;
     text-orientation: sideways;
