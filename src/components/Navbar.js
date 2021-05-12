@@ -1,7 +1,7 @@
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-row flex-nowrap">
+    <nav className="bg-green-900 flex flex-row flex-nowrap">
       <div
         id="logo"
         className="flex-2 justify-between">

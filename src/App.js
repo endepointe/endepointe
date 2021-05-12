@@ -1,10 +1,12 @@
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-green-900 min-h-">
+    <div >
       <Navbar />
+      <Footer />
     </div>
   );
 }
