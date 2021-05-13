@@ -16,7 +16,7 @@ export default function Footer() {
             <i className="material-icons md-36">email</i>
           </div>
           <div className="btn">
-            <i className="material-icons md-36">insert_emoticon</i>
+            <i className="material-icons md-36">work_outline</i>
           </div>
         </label>
       </div>
