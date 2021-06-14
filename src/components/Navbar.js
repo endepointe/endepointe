@@ -1,21 +1,42 @@
+import '../index.css';
+import '../styles/navbar.css';
+import React from 'react';
+import {
+  Link
+} from 'react-router-dom';
+
+/**
+ * when the user clicks on the blog link, retrieve the existing blogs.
+ * consider prerendering this data for faster page loading, or find an
+ * existing way that prerenders this data from a cra application.
+ */
 
 export default function Navbar() {
+  const test = (e) => {
+    e.preventDefault();
+    console.log(window.location);
+    return;
+  }
   return (
-    <nav className="bg-green-900 flex flex-row flex-nowrap">
+    <nav className="nav">
       <div
         id="logo"
-        className="flex-2 justify-between">
+        className="logo">
         <h3
-          className="px-1 text-5xl font-black"
+          className="ende"
           id="ende">ENDE</h3>
         <h3
           id="pointe"
-          className="transform rotate-180 text-5xl leading-none px-1">POINTE</h3>
+          className="pointe">POINTE</h3>
       </div>
-      <ul className="flex-1">
-        <li className="flex justify-end">
-          {/* <a href="/"
-            className=""></a> */}
+      <ul>
+        <li>
+          <Link 
+            to="/">home</Link>
+        </li>
+        <li>
+          <Link 
+            to="/blog">blog</Link>
         </li>
       </ul>
     </nav>

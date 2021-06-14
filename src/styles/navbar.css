@@ -1,0 +1,45 @@
+/* prevent selection */
+*, #logo {
+	-webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+@media screen and (min-width: 0) {
+	/* navbar */
+	.nav {
+		display: flex;
+		flex-flow: row;
+		background-color: var(--forest-green);
+	}
+  /* 
+  https://fonts.google.com/specimen/Bungee+Outline#standard-styles
+  */
+  .ende {
+    color: white;
+    font-family: 'Bungee Outline';
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 3px;
+		font-size: 2.5rem;
+		line-height: 2.5rem;
+  }
+  /* 
+  https://fonts.google.com/specimen/Bungee+Hairline#standard-styles
+  */
+  .pointe {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    font-family: 'Bungee';
+		transform: rotate(180deg);
+		margin-left: 0;
+		margin-right: 0;
+		font-size: 2.5rem;
+		line-height: 2.5rem;
+  }
+	/* end navbar */
+}

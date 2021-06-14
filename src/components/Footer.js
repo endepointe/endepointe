@@ -1,7 +1,8 @@
+import '../styles/footer.css';
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 flex justify-end">
+    <footer className="fixed bottom-0 left-0 right-0 flex justify-end footer">
       <div className="menu">
         <input type="checkbox" id="toggle" />
         <label id="show-menu" htmlFor="toggle">
