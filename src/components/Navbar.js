@@ -14,8 +14,8 @@ export default function Navbar() {
       </div>
       <ul className="flex-1">
         <li className="flex justify-end">
-          <a href="#"
-            className=""></a>
+          {/* <a href="/"
+            className=""></a> */}
         </li>
       </ul>
     </nav>
