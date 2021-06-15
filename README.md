@@ -58,3 +58,25 @@ ResponsePost: {
 		board, with censored words and the user is emailed and the message
 		is given a public label for hate speech. 
 
+
+#### Creating and Posting my Blog
+So, I gave it some thought and I want to be able to manage from a local host
+application. The database will be separated, running on its own secure server. 
+This will require that my server and database are secure. 
+
+What I will need to do:
+1. Create a blog management application.
+2. Set up a database for my blog post
+3. Retrieve those blogs an populate them within the Blog component.
+
+The MVP for the blog management application will contain service for:
+- Creating a title
+-	Creating blog content
+- creating a unique id based on the date and title
+- submitting the blog to the database
+- save a local copy of each blog
+
+What it should have in the future:
+- Retrieve all blog posts based on given parameters
+- Update posts
+- Delete posts
