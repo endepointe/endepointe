@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import Blog from './components/blog/Blog';
 import Footer from './components/Footer';
 import React from 'react';
 import {
@@ -14,7 +15,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/blog">
-          <div>blog</div>
+          <Blog />
         </Route>
         <Route exact path="/">
           <div>home</div>

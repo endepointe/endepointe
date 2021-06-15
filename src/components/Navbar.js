@@ -13,8 +13,7 @@ import {
 
 export default function Navbar() {
   const test = (e) => {
-    e.preventDefault();
-    console.log(window.location);
+    console.log(e);
     return;
   }
   return (
@@ -29,14 +28,16 @@ export default function Navbar() {
           id="pointe"
           className="pointe">POINTE</h3>
       </div>
-      <ul>
+      <ul className="nav-links">
         <li>
-          <Link 
-            to="/">home</Link>
+          <Link to="/"
+            className="nav-link"
+            onClick={test}>home</Link>
         </li>
         <li>
-          <Link 
-            to="/blog">blog</Link>
+          <Link to="/blog"
+            className="nav-link"
+            onClick={test}>blog</Link>
         </li>
       </ul>
     </nav>
