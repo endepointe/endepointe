@@ -86,4 +86,5 @@ What it should have in the future:
 
 # Blog posts
 <!-- BLOG-POST-LIST:START -->
+test
 <!-- BLOG-POST-LIST:END -->
