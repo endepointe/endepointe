@@ -64,6 +64,9 @@ So, I gave it some thought and I want to be able to manage from a local host
 application. The database will be separated, running on its own secure server. 
 This will require that my server and database are secure. 
 
+Backups of the blog posts will be managed via Github, stored in .md files.
+[https://github.com/marketplace/actions/blog-post-workflow](https://github.com/marketplace/actions/blog-post-workflow)
+
 What I will need to do:
 1. Create a blog management application.
 2. Set up a database for my blog post
@@ -80,3 +83,7 @@ What it should have in the future:
 - Retrieve all blog posts based on given parameters
 - Update posts
 - Delete posts
+
+# Blog posts
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
