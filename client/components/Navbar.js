@@ -1,4 +1,5 @@
 import styles from '../styles/Navbar.module.css';
+import Link from 'next/link';
 
 /**
  * when the user clicks on the blog link, retrieve the existing blogs.
@@ -26,11 +27,17 @@ export default function Navbar() {
       <ul className={styles.navLinks}>
         <li
           className={styles.navLink}
-          onClick={test}>home
+          onClick={test}>
+            <Link href="/">
+              <a>Home</a> 
+            </Link>
         </li>
         <li
           className={styles.navLink}
-          onClick={test}>blog
+          onClick={test}>
+            <Link href="/blog">
+              <a>Blog</a>   
+            </Link>
         </li>
       </ul>
     </nav>
