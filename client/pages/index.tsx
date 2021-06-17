@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/layout';
+import Layout from '../components/layouts/Layout';
 
 export default function Home() {
   return (
@@ -8,9 +8,6 @@ export default function Home() {
         <title>EndePointe</title>
 
       </Head>
-
-      {/* <Navbar/> */}
-
       <main>
 
       </main>

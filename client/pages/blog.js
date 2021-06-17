@@ -1,11 +1,37 @@
 import Head from 'next/head';
-import Layout from '../components/layout';
-export default function Blog() {
+import Layout from '../components/layouts/Layout';
+// import MessageBoard from '../components/message_board/MessageBoard';
+
+export default function Blog(props) {
+	console.log(props);
 	return (
 		<Layout>
 			<Head>
 				<title>EP:Blog</title>	
 			</Head>			
-				blog page</Layout>
+
+			<main>
+				<h1>Blogs</h1>
+				<p>list all blog links here</p>
+			</main>
+				
+		</Layout>
 	)
+}
+
+export async function getStaticProps(context) {
+	const res = await fetch('http://localhost:6660/api/blogs');
+	const data = await res.json();
+
+	if(!data) {
+		return {
+			notFound: true,
+		}
+	}
+
+	console.log(data);
+
+	return {
+		props: {data},
+	}
 }
