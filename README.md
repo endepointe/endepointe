@@ -64,7 +64,7 @@ So, I gave it some thought and I want to be able to manage from a local host
 application. The database will be separated, running on its own secure server. 
 This will require that my server and database are secure. 
 
-Backups of the blog posts will be managed via Github, stored in .md files.
+Backups of Medium blog posts will be managed via Github, stored below.
 [https://github.com/marketplace/actions/blog-post-workflow](https://github.com/marketplace/actions/blog-post-workflow)
 
 What I will need to do:
