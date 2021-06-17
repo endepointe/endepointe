@@ -1,9 +1,4 @@
-import '../index.css';
-import '../styles/navbar.css';
-import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import styles from '../styles/Navbar.module.css';
 
 /**
  * when the user clicks on the blog link, retrieve the existing blogs.
@@ -17,27 +12,25 @@ export default function Navbar() {
     return;
   }
   return (
-    <nav className="nav">
+    <nav className={styles.nav}>
       <div
         id="logo"
-        className="logo">
+        className={styles.logo}>
         <h3
-          className="ende"
+          className={styles.ende}
           id="ende">ENDE</h3>
         <h3
           id="pointe"
-          className="pointe">POINTE</h3>
+          className={styles.pointe}>POINTE</h3>
       </div>
-      <ul className="nav-links">
-        <li>
-          <Link to="/"
-            className="nav-link"
-            onClick={test}>home</Link>
+      <ul className={styles.navLinks}>
+        <li
+          className={styles.navLink}
+          onClick={test}>home
         </li>
-        <li>
-          <Link to="/blog"
-            className="nav-link"
-            onClick={test}>blog</Link>
+        <li
+          className={styles.navLink}
+          onClick={test}>blog
         </li>
       </ul>
     </nav>
