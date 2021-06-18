@@ -3,7 +3,7 @@ import Layout from '../components/layouts/Layout';
 // import MessageBoard from '../components/message_board/MessageBoard';
 
 export default function Blog(props) {
-	console.log(props);
+	console.log(props.blogData);
 	return (
 		<Layout>
 			<Head>
@@ -21,17 +21,15 @@ export default function Blog(props) {
 
 export async function getStaticProps(context) {
 	const res = await fetch('http://localhost:6660/api/blogs');
-	const data = await res.json();
+	const blogData = await res.json();
 
-	if(!data) {
+	if(!blogData) {
 		return {
 			notFound: true,
 		}
 	}
 
-	console.log(data);
-
 	return {
-		props: {data},
+		props: {blogData},
 	}
 }

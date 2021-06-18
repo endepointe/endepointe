@@ -1,0 +1,16 @@
+{
+	"blogs": {
+		"1": {
+			"id": 1,
+			"title": "first blog post",
+			"date": "June 17, 2021",
+			"content": "This is a blog post being read from a text file",
+		},
+		"2": {
+			"id": 2,
+			"title": "second blog post",
+			"date": "June 17, 2021",
+			"content": "Second post"
+		}
+	}
+}
