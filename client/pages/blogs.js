@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import Layout from '../components/layouts/Layout';
-// import MessageBoard from '../components/message_board/MessageBoard';
+import {fetcher} from '../lib/fetcher';
+// import useSwr from 'swr'; 
+
 
 export default function Blog(props) {
-	console.log(props.blogData);
+	console.log(props);
 	return (
 		<Layout>
 			<Head>
@@ -20,16 +22,19 @@ export default function Blog(props) {
 }
 
 export async function getStaticProps(context) {
-	const res = await fetch('http://localhost:6660/api/blogs');
-	const blogData = await res.json();
-
-	if(!blogData) {
+	const res = fetcher('http://localhost:5551/blogs/all', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	const data = await res;
+	if (!data) {
 		return {
-			notFound: true,
+			notFound: true
 		}
 	}
-
 	return {
-		props: {blogData},
+		props: data
 	}
 }

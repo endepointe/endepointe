@@ -35,7 +35,7 @@ export default function Navbar() {
         <li
           className={styles.navLink}
           onClick={test}>
-            <Link href="/blog">
+            <Link href="/blogs">
               <a>Blog</a>   
             </Link>
         </li>
