@@ -41,3 +41,7 @@ ICONS
                                   supported by Chrome, Edge, Opera and Firefox */
   }
 }
+
+.blogContent img {
+  width:200px;
+}
