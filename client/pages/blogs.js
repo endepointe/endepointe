@@ -9,6 +9,23 @@ import {
 	useEffect
 } from 'react';
 
+function findVideoLinks(text) {
+	let md = unified().use(parse).use(remark2react).processSync(text).result; 
+	let mdChild = md.props.children;
+	mdChild.forEach(child => {
+		if (typeof child === 'object') {
+			if (child.props.children.length === 1) {
+				child.props.children.forEach(obj => {
+					if (obj.props?.href) {
+						console.log(obj.props.href)
+						return obj.props.href;
+					}	
+				})
+			}
+		}
+	})
+	return md;
+}
 export default function Blog(props) {
 	const [blogs, setBlogs] = useState([]);
 	useEffect(() => {
@@ -30,10 +47,7 @@ export default function Blog(props) {
 								<h4>{blogs[blog].modified}</h4>
 								<div className="blogContent">
 									{
-										unified()
-											.use(parse)
-											.use(remark2react)
-											.processSync(blogs[blog].content).result
+										findVideoLinks(blogs[blog].content)
 									}
 								</div>
 							</section>
