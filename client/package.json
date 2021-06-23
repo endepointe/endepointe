@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5550",
+    "clientdev": "next dev -p 5550",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "startepdev": "concurrently \" npm run dev\" \"cd ../expressapi/ && npm run dev\""
+    "dev": "concurrently \" npm run clientdev\" \"cd ../expressapi/ && npm run dev\""
   },
   "dependencies": {
     "cors": "^2.8.5",
