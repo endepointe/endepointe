@@ -17,7 +17,7 @@ function findVideoLinks(text) {
 			if (child.props.children.length === 1) {
 				child.props.children.forEach(obj => {
 					if (obj.props?.href) {
-						console.log(obj.props.href)
+						console.log(obj.props)
 						return obj.props.href;
 					}	
 				})
