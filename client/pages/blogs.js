@@ -4,7 +4,8 @@ import {fetcher} from '../lib/fetcher';
 import unified from 'unified';
 import parse from 'remark-parse';
 import remark2react from 'remark-react';
-import {
+import ReactMarkdown from 'react-markdown';
+import React, {
 	useState,
 	useEffect
 } from 'react';
@@ -45,11 +46,11 @@ export default function Blog(props) {
 								<h3>{blogs[blog].title}</h3>
 								<h4>{blogs[blog].posted}</h4>
 								<h4>{blogs[blog].modified}</h4>
-								<div className="blogContent">
-									{
-										findVideoLinks(blogs[blog].content)
-									}
-								</div>
+								<ReactMarkdown 
+									linkTarget="_blank"	
+									className="blogContent">
+									{blogs[blog].content}
+								</ReactMarkdown>
 							</section>
 						)
 					})}
