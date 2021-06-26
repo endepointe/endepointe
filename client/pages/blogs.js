@@ -1,32 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/layouts/Layout';
 import {fetcher} from '../lib/fetcher';
-import unified from 'unified';
-import parse from 'remark-parse';
-import remark2react from 'remark-react';
 import ReactMarkdown from 'react-markdown';
 import React, {
 	useState,
 	useEffect
 } from 'react';
 
-function findVideoLinks(text) {
-	let md = unified().use(parse).use(remark2react).processSync(text).result; 
-	let mdChild = md.props.children;
-	mdChild.forEach(child => {
-		if (typeof child === 'object') {
-			if (child.props.children.length === 1) {
-				child.props.children.forEach(obj => {
-					if (obj.props?.href) {
-						console.log(obj.props)
-						return obj.props.href;
-					}	
-				})
-			}
-		}
-	})
-	return md;
-}
 export default function Blog(props) {
 	const [blogs, setBlogs] = useState([]);
 	useEffect(() => {
@@ -49,7 +29,7 @@ export default function Blog(props) {
 								<ReactMarkdown 
 									linkTarget="_blank"	
 									className="blogContent">
-									{blogs[blog].content}
+									{getPreview(blogs[blog].content)}
 								</ReactMarkdown>
 							</section>
 						)
@@ -58,6 +38,30 @@ export default function Blog(props) {
 			</main>
 		</Layout>
 	)
+}
+
+function getPreview(text) {
+	let str = text;
+	let preview = [];
+	let i = 0;
+
+	const linefeed = /\n/g;
+	const parentheses = /\([^\)]*\)/g; 
+	const brackets = /\[[^\]]*\]/g;
+	const image = /\<[^\>]*\>/g;
+	const cBracket = /\]/g;
+	const comma = /,/g;
+
+	str = str.replace(parentheses, '').replace(linefeed, '').replace(image, '').replace(brackets, '').replace(cBracket, '');
+	// console.log(str);
+
+	while (preview.length < 400) {
+		preview.push(str[i]);
+		i++;
+	}	
+	preview = preview.toString().replace(comma, '');
+	console.log(preview);
+	return preview;
 }
 
 export async function getStaticProps(context) {
