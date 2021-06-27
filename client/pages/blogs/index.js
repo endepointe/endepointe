@@ -1,13 +1,15 @@
 import Head from 'next/head';
-import Layout from '../components/layouts/Layout';
-import {fetcher} from '../lib/fetcher';
+import Link from 'next/link';
+import Layout from '../../components/layouts/Layout';
+import {fetcher} from '../../lib/fetcher';
+import {getPreview} from '../../lib/getPreview';
 import ReactMarkdown from 'react-markdown';
 import React, {
 	useState,
 	useEffect
 } from 'react';
 
-export default function Blog(props) {
+export default function Blogs(props) {
 	const [blogs, setBlogs] = useState([]);
 	useEffect(() => {
 		setBlogs(props.entries);
@@ -15,7 +17,7 @@ export default function Blog(props) {
 	return (
 		<Layout>
 			<Head>
-				<title>EP:Blog</title>	
+				<title>EP:Blogs</title>	
 			</Head>			
 			<main>
 				<h1>Blogs</h1>
@@ -31,6 +33,11 @@ export default function Blog(props) {
 									className="blogContent">
 									{getPreview(blogs[blog].content)}
 								</ReactMarkdown>
+								<Link 
+									// as={`${blogs[blog].title}`}
+									href={`/blogs/${encodeURIComponent(blogs[blog].id)}`}>
+									<a>read more</a>
+								</Link>
 							</section>
 						)
 					})}
@@ -38,30 +45,6 @@ export default function Blog(props) {
 			</main>
 		</Layout>
 	)
-}
-
-function getPreview(text) {
-	let str = text;
-	let preview = [];
-	let i = 0;
-
-	const linefeed = /\n/g;
-	const parentheses = /\([^\)]*\)/g; 
-	const brackets = /\[[^\]]*\]/g;
-	const image = /\<[^\>]*\>/g;
-	const cBracket = /\]/g;
-	const comma = /,/g;
-
-	str = str.replace(parentheses, '').replace(linefeed, '').replace(image, '').replace(brackets, '').replace(cBracket, '');
-	// console.log(str);
-
-	while (preview.length < 400) {
-		preview.push(str[i]);
-		i++;
-	}	
-	preview = preview.toString().replace(comma, '');
-	console.log(preview);
-	return preview;
 }
 
 export async function getStaticProps(context) {
