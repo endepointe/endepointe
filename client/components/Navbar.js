@@ -9,7 +9,6 @@ import Link from 'next/link';
 
 export default function Navbar() {
   const test = (e) => {
-    console.log(e);
     return;
   }
   return (
