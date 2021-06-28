@@ -1,5 +1,7 @@
 @media screen and (min-width: 640px) {
-
+	.gear {
+		background-color: black;
+	}
 }
 
 @media screen and (min-width: 768px) {

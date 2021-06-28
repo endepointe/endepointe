@@ -1,4 +1,5 @@
 import '../../styles/BlogContent.module.css';
+import { useStoreContext } from '../../store/context';
 import BlogNavbar from '../../components/blog_page/BlogNavbar';
 import {fetcher} from '../../lib/fetcher';
 import {useRouter} from 'next/router';
@@ -6,6 +7,8 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 export default function Blog() {
+	const data = useStoreContext();
+	console.log(data);
 	const [id, setId] = useState('');
 	const	[title, setTitle] = useState('');
 	const [posted, setPosted] = useState('');
