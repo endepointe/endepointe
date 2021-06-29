@@ -1,4 +1,5 @@
 import '../../styles/BlogContent.module.css';
+
 import BlogNavbar from '../../components/blog_page/BlogNavbar';
 import {fetcher} from '../../lib/fetcher';
 import { 
@@ -7,7 +8,6 @@ import {
 import ReactMarkdown from 'react-markdown';
 
 export default function Blog({entry}) {
-	console.log(entry)
 	const [id, setId] = useState('');
 	const	[title, setTitle] = useState('');
 	const [posted, setPosted] = useState('');
@@ -16,12 +16,12 @@ export default function Blog({entry}) {
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
+			if (!entry) { setError(true); }
 			setId(entry.id);
 			setTitle(entry.title);
 			setPosted(entry.posted);
 			setModified(entry.modified);
 			setContent(entry.content);
-			setError(false);
 	}, []);
 	return (
 		<div>  
@@ -44,8 +44,10 @@ export default function Blog({entry}) {
 }
 
 export async function getStaticPaths() {
-
-
+	// fetch api of all blog ids
+	const res = await fetcher('http://localhost:5551/blogs/all/ids');
+	const data = await res;
+	console.log(data);
 	return {
 		paths: [
 			{params: {blog: '10'}},

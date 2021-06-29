@@ -1,4 +1,3 @@
-import { blogReducer } from '../../store/blog_context' 
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/layouts/Layout';
@@ -8,25 +7,15 @@ import ReactMarkdown from 'react-markdown';
 import React, {
 	useState,
 	useEffect,
-	useReducer,
 } from 'react';
 
 export default function Blogs(props) {
 	const [blogs, setBlogs] = useState([]);
-	// state is read-only
-	// const [state, dispatch] = useReducer(blogReducer);
 
 	useEffect(() => {
 		setBlogs(props.entries);
 	},[props.entries])
 
-	// const setBlog = (data) => {
-	// 	console.log('set blog data', data)
-	// 	dispatch({
-	// 		type: 'SET_BLOG',
-	// 		payload: data
-	// 	});
-	// }
 	return (
 		<Layout>
 			<Head>

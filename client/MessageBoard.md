@@ -3,7 +3,7 @@
 This component serves as a message board and will require the user to 
 use oauth2 to post a response message to the blog post.
  
-The messages will be saved as json and saved to a psql db.
+The messages will be saved as json and passed to a psql db.
 
 The UserPost object will consist of the following:
 ``` 	
@@ -43,14 +43,14 @@ individual words censored out but the all other data will remain
 about the author.
  
 #### Steps for posting a message:
-1.	User navigates to /blog[id] and selects 'Reply' for the /blog/title or 
-	 	existing reply.
+1.	User navigates to /blogs[id] and selects 'Reply' for the /blog/title o
+		or existing reply.
 2. 	Check for a access token in either a cookie or session.
-3.	If there is a valid, unexpired token, display the information
-		to make a post. This includes a profile picture and name.
+3.	If there is a valid, unexpired token, enable the button 
+		to make a post. Also display their avatar (if available) and username 
 4. 	If there there is no valid token, get one from the auth endpoint
-		and authenticate the user. When this is complete, display the 
-		information to make a post (profile picture, name)
+		and authenticate the user. When this is complete, enable the 
+		button to make a post ( and display profile picture, name)
 5. 	The user's name will be prefilled and their focus will be on 
 		the message field. 
 6.	The word count is checked at each change event, updating the user

@@ -8,6 +8,12 @@ router.get('/all', async (req, res) => {
 	res.json({entries});
 });
 
+// /blogs/all/ids
+router.get('/all/ids', async (req, res) => {
+	let ids = await read.allIds();
+	res.json({ids});
+})
+
 // /blogs/one
 router.get('/one', (req, res) => {
 	res.json({msg: 'get one blog'});

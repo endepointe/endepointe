@@ -5,6 +5,11 @@ const allEntries = async () => {
 	return response;
 }
 
+const allIds = async () => {
+	let response = await  db.manyOrNone('select id from blogpost where id > 0')
+	return response;
+}
+
 const entry = async (id) => {
 	let response = await db.oneOrNone(`select * from blogpost where id = ${id}`);
 	return response;
@@ -12,5 +17,6 @@ const entry = async (id) => {
 
 module.exports = {
 	allEntries: allEntries,
+	allIds: allIds,
 	entry: entry,
 };
