@@ -1,5 +1,4 @@
 import '../../styles/BlogContent.module.css';
-
 import BlogNavbar from '../../components/blog_page/BlogNavbar';
 import {fetcher} from '../../lib/fetcher';
 import { 
@@ -39,20 +38,19 @@ export default function Blog({entry}) {
 				</section>
 			</>
 			}
+			<a href="http://localhost:5551/auth/github">GitHub Login</a>
 		</div>
 	)
 }
 
 export async function getStaticPaths() {
-	// fetch api of all blog ids
 	const res = await fetcher('http://localhost:5551/blogs/all/ids');
-	const data = await res;
-	console.log(data);
+	const idList = await res;
+	const paths = idList.ids.map((item) => ({
+		params: { blog: item.id.toString() },
+	}));
 	return {
-		paths: [
-			{params: {blog: '10'}},
-			{params: {blog: '11'}}
-		],
+		paths,
 		fallback: false
 	}
 }
