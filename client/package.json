@@ -5,7 +5,7 @@
   "scripts": {
     "clientdev": "next dev -p 5550",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 5550",
     "lint": "next lint",
     "dev": "concurrently \" npm run clientdev\" \"cd ../expressapi/ && npm run dev\""
   },

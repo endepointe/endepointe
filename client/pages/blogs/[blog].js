@@ -1,49 +1,37 @@
 import '../../styles/BlogContent.module.css';
-import { useStoreContext } from '../../store/context';
 import BlogNavbar from '../../components/blog_page/BlogNavbar';
 import {fetcher} from '../../lib/fetcher';
-import {useRouter} from 'next/router';
-import { useEffect, useState } from 'react';
+import { 
+	useEffect, useState 
+} from 'react';
 import ReactMarkdown from 'react-markdown';
 
-export default function Blog() {
-	const data = useStoreContext();
-	console.log(data);
+export default function Blog({entry}) {
+	console.log(entry)
 	const [id, setId] = useState('');
 	const	[title, setTitle] = useState('');
 	const [posted, setPosted] = useState('');
 	const [modified, setModified] = useState('');
 	const [content, setContent] = useState('');
 	const [error, setError] = useState(false);
-	const router = useRouter();
-	const {blog} = router.query;
-	useEffect(async () => {
-		try {
-			let r = fetcher(`http://localhost:5551/blogs/${blog}`);
-			console.log(r)
-			let d = await r;
-			console.log(d)
-			setId(d.entry.id);
-			setTitle(d.entry.title);
-			setPosted(d.entry.posted);
-			setModified(d.entry.modified);
-			setContent(d.entry.content);
+
+	useEffect(() => {
+			setId(entry.id);
+			setTitle(entry.title);
+			setPosted(entry.posted);
+			setModified(entry.modified);
+			setContent(entry.content);
 			setError(false);
-		} catch (err) {
-			setError(true);
-			console.error(err);
-		} finally {
-			console.log('maybe do some cleanup or checking here')
-		}
-	},[]);
+	}, []);
 	return (
 		<div>  
+			{error ? 'there is no state' : null}
+			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 
 			<>
-				<BlogNavbar/>
-				<h5>{posted}</h5>
-				<h6>{modified}</h6>
-				<h3>{title}</h3>
+				<h5 className="text-xl">{posted}</h5>
+				<h6 className="text-xl">{modified}</h6>
+				<h3 className="text-5xl">{title}</h3>
 				<section>
 					<ReactMarkdown>
 						{content}
@@ -51,7 +39,36 @@ export default function Blog() {
 				</section>
 			</>
 			}
-
 		</div>
 	)
+}
+
+export async function getStaticPaths() {
+
+
+	return {
+		paths: [
+			{params: {blog: '10'}},
+			{params: {blog: '11'}}
+		],
+		fallback: false
+	}
+}
+
+export async function getStaticProps({params}) {
+	const res = await fetcher(`http://localhost:5551/blogs/${params.blog}`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	const data = await res;
+	if (!data) {
+		return {
+			notFound: true
+		}
+	}
+	return {
+		props: data
+	}
 }
