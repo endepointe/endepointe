@@ -24,6 +24,7 @@ export default function Blog({entry}) {
 	}, []);
 	return (
 		<div>  
+			<a href="http://localhost:5551/auth/github">GitHub Login</a>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 

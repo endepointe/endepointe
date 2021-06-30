@@ -4,9 +4,12 @@ const findOrCreate = async (oauthdata) => {
 	console.log('oauthdata: ', oauthdata)
 	let id = oauthdata.githubId;
 	try {
-		const user = await db.oneOrNone(`select * from GithubUsers where oauthid = ${id};`)
-		if (!user) {
-			const newUser = await db.one(`insert into GithubUsers(oauthid, oauthdata) values($1, $2) returning oauthid`, [id, oauthdata])			
+		const result = await db.any('select * from GithubUsers where oauthid = $1', [id]);
+		console.log('result: ', result)
+		const user = await result.json();
+		console.log('fetched user: ', user);
+		if (result === null) {
+			const newUser = await db.one(`insert into GithubUsers(oauthid) values($1) returning oauthid`, [id])			
 			console.log('newUser: ', newUser);
 			return newUser;
 		}

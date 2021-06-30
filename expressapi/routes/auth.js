@@ -14,32 +14,27 @@ passport.use(new GitHubStrategy({
 	},
 	async function(accessToken, refreshToken, profile, done) {
 		console.log('in new githubstrategy')
-		// console.log('a: ', accessToken, '\nr: ', refreshToken, '\np: ', profile, '\nd: ', done);
-		user.findOrCreate({githubId: profile.id}, function(err, u) {
-			return done(err, u);
-		})
+		// console.log('a: ', accessToken);
+		// console.log('r: ', refreshToken);
+		console.log('p: ', profile.id);
+		// console.log('d: ', done);
+		let response = await user.findOrCreate({githubid: profile.id})
+		console.log('user: ', response)
+		return done(null);
 	}	
 ));
 
-router.get('/github', (req, res, next) => {
-	console.log('redirect to: ', req.query);
-	const {redirectTo} = req.query;
-	const state = JSON.stringify({redirectTo});
-	const authenticator = passport.authenticate('github', {scope: [], state, session: true});
-	authenticator(req, res, next);
-}, (req, res, next) => {
-	next();
+router.get('/github', 
+	passport.authenticate('github', { scope: ['user:email'] }));
+
+router.get('/github/callback', 
+	passport.authenticate('github', 
+		{ 
+			failureRedirect: 'http://localhost:5550' 
+		}),
+	function(req, res) {
+		console.log('cb req: ', req)
+		// Successful authentication, redirect home.
+		res.redirect('http://localhost:5550/blogs');
 });
-
-router.get('/github/callback', passport.authenticate('github', {
-	failureRedirect: '/blogs'
-}), (req, res, next) => {
-	const token = jwt.sign({id: req.user.id}, JWT_KEY, {expiresIn: 60*60*24*1000});
-	req.logIn(req.user, function(err) {
-		if (err) return next(err);
-		console.log('token: ',token)
-		res.redirect(`http://localhost:5550/blogs/`)
-	})
-})
-
 module.exports = router;
