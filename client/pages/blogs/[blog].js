@@ -22,9 +22,25 @@ export default function Blog({entry}) {
 			setModified(entry.modified);
 			setContent(entry.content);
 	}, []);
+
+	const auth = () => {
+		let url = 'http://localhost:5551/auth/github'
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', url);
+		xhr.setRequestHeader('Referrer', `blogs/${id}`);
+		xhr.onreadystatechange = function() {
+			console.log('xhr: ', xhr);
+			window.location = url;
+		}
+		xhr.send();
+	}
+
 	return (
 		<div>  
-			<a href="http://localhost:5551/auth/github">GitHub Login</a>
+			<button onClick={auth}>Github XHR</button>
+			<a 
+				// referrerPolicy="unsafe-url"
+				href="http://localhost:5551/auth/github">GitHub Login</a>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 

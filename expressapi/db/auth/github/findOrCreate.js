@@ -2,20 +2,21 @@ const db = require('../../init');
 
 const findOrCreate = async (oauthdata) => {
 	console.log('oauthdata: ', oauthdata)
-	let id = oauthdata.githubId;
+	let id = oauthdata.githubid;
 	try {
-		const result = await db.any('select * from GithubUsers where oauthid = $1', [id]);
-		console.log('result: ', result)
-		const user = await result.json();
-		console.log('fetched user: ', user);
-		if (result === null) {
-			const newUser = await db.one(`insert into GithubUsers(oauthid) values($1) returning oauthid`, [id])			
-			console.log('newUser: ', newUser);
+		const userres = await db.oneOrNone('select * from GithubUsers where oauthid = $1', [id]);
+		const user = await userres;
+		console.log('findOrCreate user: ', user);
+		if (user === null || !user) {
+			const newuserres = await db.one('insert into githubusers(oauthid) values($1) returning oauthid', [id])			
+			const newUser = await newuserres;
+			console.log('findOrCreate newUser: ', newUser);
 			return newUser;
 		}
 		return user;
 	} catch (err) {
-		return Error('usernotfound')
+		console.error(err);
+		return null; 
 	}
 }
 

@@ -3,9 +3,18 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
-const user = require('../db/auth/github/findOrCreate');
+const User = require('../db/auth/github/findOrCreate');
 
 const JWT_KEY = 'allyourbasearebelongtous';
+const headers = [];
+
+function clearHeaders() {
+	console.log('clear headers')
+	headers.forEach((header) => {
+		header = '';
+	})
+	headers.length = 0;
+}
 
 passport.use(new GitHubStrategy({
 		clientID: process.env.GITHUB_CLIENT_ID,
@@ -16,16 +25,19 @@ passport.use(new GitHubStrategy({
 		console.log('in new githubstrategy')
 		// console.log('a: ', accessToken);
 		// console.log('r: ', refreshToken);
-		console.log('p: ', profile.id);
+		// console.log('p: ', profile);
 		// console.log('d: ', done);
-		let response = await user.findOrCreate({githubid: profile.id})
-		console.log('user: ', response)
-		return done(null);
+		const user = await User.findOrCreate({githubid: profile.id})
+		console.log('github strat user: ', user)
+		return done(null,user);
 	}	
 ));
 
-router.get('/github', 
-	passport.authenticate('github', { scope: ['user:email'] }));
+router.get('/github', (req, res, next) => {
+	headers.push(req.get('Referrer'))
+	console.log(headers, 'REQ')
+	next();
+}, passport.authenticate('github', { scope: ['notifications'] }));
 
 router.get('/github/callback', 
 	passport.authenticate('github', 
@@ -33,8 +45,13 @@ router.get('/github/callback',
 			failureRedirect: 'http://localhost:5550' 
 		}),
 	function(req, res) {
-		console.log('cb req: ', req)
-		// Successful authentication, redirect home.
-		res.redirect('http://localhost:5550/blogs');
+		let redirectUrl = headers[1] + headers[0];
+		console.log('headers:', headers);
+		console.log(redirectUrl)
+		clearHeaders();
+		// Successful authentication, redirect to the original page.
+		res.redirect(redirectUrl);
+		// res.redirect('http://localhost:5550');
 });
 module.exports = router;
+
