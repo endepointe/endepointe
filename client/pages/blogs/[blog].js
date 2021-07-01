@@ -37,10 +37,6 @@ export default function Blog({entry}) {
 
 	return (
 		<div>  
-			<button onClick={auth}>Github XHR</button>
-			<a 
-				// referrerPolicy="unsafe-url"
-				href="http://localhost:5551/auth/github">GitHub Login</a>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 
@@ -55,7 +51,9 @@ export default function Blog({entry}) {
 				</section>
 			</>
 			}
-			<a href="http://localhost:5551/auth/github">GitHub Login</a>
+			<button onClick={auth}>
+				Github Signin <span>{'github logo'}</span>
+			</button>
 		</div>
 	)
 }

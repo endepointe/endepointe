@@ -23,11 +23,27 @@ passport.use(new GitHubStrategy({
 	},
 	async function(accessToken, refreshToken, profile, done) {
 		console.log('in new githubstrategy')
-		// console.log('a: ', accessToken);
+		console.log('a: ', accessToken);
 		// console.log('r: ', refreshToken);
 		// console.log('p: ', profile);
 		// console.log('d: ', done);
-		const user = await User.findOrCreate({githubid: profile.id})
+		/*
+		information stored
+		{
+			id integer,
+			name string,
+			gravatar_id string,
+			avatar_url string,
+			html_url string,
+		}
+		*/
+		const user = await User.findOrCreate({
+			id: profile._json.id, 
+			name: profile._json.name,
+			gravatar_id: profile._json.gravatar_id,
+			avatar_url: profile._json.avatar_url,
+			html_url: profile._json.html_url
+		})
 		console.log('github strat user: ', user)
 		return done(null,user);
 	}	
@@ -37,21 +53,25 @@ router.get('/github', (req, res, next) => {
 	headers.push(req.get('Referrer'))
 	console.log(headers, 'REQ')
 	next();
-}, passport.authenticate('github', { scope: ['notifications'] }));
+}, passport.authenticate('github', { scope: ['(no scope)'] }));
 
 router.get('/github/callback', 
 	passport.authenticate('github', 
 		{ 
 			failureRedirect: 'http://localhost:5550' 
 		}),
+	// Successful authentication, redirect to the original page.
 	function(req, res) {
+		console.log('req.user: ', req)
 		let redirectUrl = headers[1] + headers[0];
-		console.log('headers:', headers);
-		console.log(redirectUrl)
+		// console.log('headers:', headers);
+		// console.log(redirectUrl)
 		clearHeaders();
-		// Successful authentication, redirect to the original page.
 		res.redirect(redirectUrl);
-		// res.redirect('http://localhost:5550');
+		// req.logIn(user, function(err) {
+		// 	if (err) { return next(err); }
+		// 	return res.redirect(redirectUrl)
+		// })
 });
 module.exports = router;
 
