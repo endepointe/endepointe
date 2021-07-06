@@ -5,7 +5,6 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const User = require('../db/auth/github/findOrCreate');
 
-const JWT_KEY = 'allyourbasearebelongtous';
 const headers = [];
 
 function clearHeaders() {
@@ -23,8 +22,8 @@ passport.use(new GitHubStrategy({
 	},
 	async function(accessToken, refreshToken, profile, done) {
 		console.log('in new githubstrategy')
-		console.log('a: ', accessToken);
-		// console.log('r: ', refreshToken);
+		console.log('access: ', accessToken);
+		console.log('refresh: ', refreshToken);
 		// console.log('p: ', profile);
 		// console.log('d: ', done);
 		/*
@@ -44,34 +43,41 @@ passport.use(new GitHubStrategy({
 			avatar_url: profile._json.avatar_url,
 			html_url: profile._json.html_url
 		})
-		console.log('github strat user: ', user)
+		// handle InternalOAuthError
 		return done(null,user);
 	}	
 ));
 
 router.get('/github', (req, res, next) => {
 	headers.push(req.get('Referrer'))
-	console.log(headers, 'REQ')
+	// console.log(headers, 'REQ')
 	next();
-}, passport.authenticate('github', { scope: ['(no scope)'] }));
+}, passport.authenticate('github', { scope: [] }));
 
 router.get('/github/callback', 
 	passport.authenticate('github', 
+		// dont forget to make a fallback url for the user should anything
+		// go wrong during auth request.
 		{ 
 			failureRedirect: 'http://localhost:5550' 
 		}),
 	// Successful authentication, redirect to the original page.
 	function(req, res) {
-		console.log('req.user: ', req)
 		let redirectUrl = headers[1] + headers[0];
-		// console.log('headers:', headers);
-		// console.log(redirectUrl)
 		clearHeaders();
-		res.redirect(redirectUrl);
-		// req.logIn(user, function(err) {
-		// 	if (err) { return next(err); }
-		// 	return res.redirect(redirectUrl)
-		// })
+		console.log("req.query.code: ", req.query.code);
+		console.log('req.user: ', req.user);
+		// console.log("res: ", res);
+		process.env.JWT_KEY = req.query.code;
+		console.log('set jwt key: ', process.env.JWT_KEY);
+		const token = jwt.sign({id: req.user.id}, process.env.JWT_KEY, {expiresIn: 60*60*24*1000});
+		res.status(201).cookie(
+					'gat', token, 
+					{sameSite: 'Lax'},
+					{expires: new Date(Date.now() + 90000)}
+				)
+				// .redirect(redirectUrl);
+				.redirect('http://localhost:5550/blogs/reply');
 });
 module.exports = router;
 

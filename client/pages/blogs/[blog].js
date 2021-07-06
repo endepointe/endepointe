@@ -29,7 +29,6 @@ export default function Blog({entry}) {
 		xhr.open('GET', url);
 		xhr.setRequestHeader('Referrer', `blogs/${id}`);
 		xhr.onreadystatechange = function() {
-			console.log('xhr: ', xhr);
 			window.location = url;
 		}
 		xhr.send();
@@ -37,6 +36,7 @@ export default function Blog({entry}) {
 
 	return (
 		<div>  
+			<a href="http://localhost:5551/auth/github">github Signin</a>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 
@@ -87,3 +87,10 @@ export async function getStaticProps({params}) {
 		props: data
 	}
 }
+
+// export async function getServerSideProps(ctx) {
+// 	console.log('ctx: ', ctx);
+// 	return {
+// 		props: {}
+// 	}
+// }

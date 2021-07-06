@@ -6,10 +6,8 @@ export default function Home() {
     <Layout>
       <Head>
         <title>EndePointe</title>
-
       </Head>
       <main>
-
       </main>
     </Layout>
   )

@@ -1,10 +1,5 @@
 import '../../styles/BlogNavbar.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
-
-function Gear() {
-	return <Image className="gear" src="" width="64" height="64"/>
-}
 
 const BlogNavbar = () => {
 	return (

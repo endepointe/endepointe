@@ -19,7 +19,10 @@ const findOrCreate = async (data) => {
 }
 
 const findById = async (id) => {
-	const user = await db.oneOrNone(`select * from GithubUsers where oauthid = ${id};`)
+	console.log(id)
+	const res = await db.oneOrNone('select * from GithubUsers where id = $1', [id]);
+	const user = await res;
+	console.log('findbyid: ', user)
 	return user;
 }
 
