@@ -2,27 +2,27 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const blogRoute = require('./routes/blog/blogs');
-const auth = require('./routes/auth');
+const github = require('./routes/auth/github');
 const cors = require('cors');
 const passport = require('passport');
 const app = express();
-const User = require('./db/auth/github/findOrCreate')
+const GithubUser = require('./db/auth/github/findOrCreate')
 
 const corsOptions = {
 	origin: 'http://localhost:5550',
 };
 
-app.use(session({
-	resave: false,
-	saveUninitialized: false,
-	secret: 'allyourbasearebelongtous'
-}))
+// app.use(session({
+// 	resave: false,
+// 	saveUninitialized: false,
+	
+// }))
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/blogs', blogRoute);
-app.use('/auth', auth);
+app.use('/auth/github', github);
 app.use('/profile', require('./routes/profile'))
 
 passport.serializeUser(function(user, cb) {

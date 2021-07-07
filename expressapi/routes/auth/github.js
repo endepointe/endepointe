@@ -3,12 +3,11 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
-const User = require('../db/auth/github/findOrCreate');
-
+const GithubUser = require('../../db/auth/github/findOrCreate');
 const headers = [];
+const {getKey, setKey} = require('../../globals');
 
 function clearHeaders() {
-	console.log('clear headers')
 	headers.forEach((header) => {
 		header = '';
 	})
@@ -24,7 +23,7 @@ passport.use(new GitHubStrategy({
 		console.log('in new githubstrategy')
 		console.log('access: ', accessToken);
 		console.log('refresh: ', refreshToken);
-		// console.log('p: ', profile);
+		console.log('p: ', profile);
 		// console.log('d: ', done);
 		/*
 		information stored
@@ -36,13 +35,24 @@ passport.use(new GitHubStrategy({
 			html_url string,
 		}
 		*/
-		const user = await User.findOrCreate({
-			id: profile._json.id, 
-			name: profile._json.name,
-			gravatar_id: profile._json.gravatar_id,
-			avatar_url: profile._json.avatar_url,
-			html_url: profile._json.html_url
-		})
+		console.log('provider: ', profile.provider)
+		let user = null;
+		switch (profile.provider) {
+			case 'github':
+				user = await GithubUser.findOrCreate({
+					id: profile._json.id, 
+					name: profile._json.name,
+					gravatar_id: profile._json.gravatar_id,
+					avatar_url: profile._json.avatar_url,
+					html_url: profile._json.html_url,
+					provider: profile.provider
+				});
+			break;
+			default:
+				user = null;
+			break;
+		}
+
 		// handle InternalOAuthError
 		return done(null,user);
 	}	
@@ -67,12 +77,14 @@ router.get('/github/callback',
 		clearHeaders();
 		console.log("req.query.code: ", req.query.code);
 		console.log('req.user: ', req.user);
-		// console.log("res: ", res);
-		process.env.JWT_KEY = req.query.code;
-		console.log('set jwt key: ', process.env.JWT_KEY);
-		const token = jwt.sign({id: req.user.id}, process.env.JWT_KEY, {expiresIn: 60*60*24*1000});
+		
+		setKey(req.query.code);
+
+		console.log('set jwt key: ', getKey()); 
+		const token = jwt.sign({id: req.user.id}, getKey(), {expiresIn: 60*60*24*1000});
+
 		res.status(201).cookie(
-					'gat', token, 
+					'authorization', token, 
 					{sameSite: 'Lax'},
 					{expires: new Date(Date.now() + 90000)}
 				)

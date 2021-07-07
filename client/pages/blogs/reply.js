@@ -4,10 +4,10 @@ import CreateReply from '../../components/blog_page/CreateReply';
 
 function Reply({user}) {
 	const [name, setName] = useState('')
-	console.log("THE USER: ", user.user.name);
+	console.log("THE USER: ", user.name);
 
 	useEffect(() => {
-		setName(user.user.name)
+		setName(user.name)
 	}, []);
 
 	return (
@@ -34,9 +34,6 @@ async function getUser(authorization) {
 }
 
 Reply.getInitialProps = async (ctx) => {
-	// console.log('ctx: ', ctx);
-	// console.log('headers: ', ctx.req.headers);
-	// console.log('cookie: ', ctx.req.headers.cookie);
 	if (ctx.err) {
 		throw new Error(ctx.err);
 	}
@@ -51,21 +48,19 @@ Reply.getInitialProps = async (ctx) => {
 		let nc = cookie[0].trim();
 		cookie[0] = nc;
 		switch (cookie[0]) {
-			case 'gat':
+			case 'authorization':
 				authorization = cookie[1];
 			break;
 			default:
+				authorization = null;
 				break;
 		}
 	})
-	// console.log('trimmed cookies: ', cookies);
-	// console.log('authorization cookie: ', authorization);
-
 	const props = await getUser(authorization);
 	console.log('props: ', props)
 
 	return {
-		user: props 
+		user: props.user 
 	}
 }
 

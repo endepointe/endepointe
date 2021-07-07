@@ -2,11 +2,12 @@ const express = require('express');
 const User = require('../db/auth/github/findOrCreate');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
+const {getKey} = require('../globals');
 
 router.use((req, res, next) => {
 	const token = req.headers['authorization'];
-	console.log("jwt key in /profile", process.env.JWT_KEY);
-	jwt.verify(token, process.env.JWT_KEY, function(err, data) {
+	console.log("jwt key in /profile", getKey());
+	jwt.verify(token, getKey(), function(err, data) {
 		if (err) {
 			res.status(401).send({error: 'Not Authorized'});
 		} else {

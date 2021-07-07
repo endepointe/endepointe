@@ -36,7 +36,10 @@ export default function Blog({entry}) {
 
 	return (
 		<div>  
-			<a href="http://localhost:5551/auth/github">github Signin</a>
+			<div className="authProviders">
+				<a href="http://localhost:5551/auth/github">github Signin</a>
+				<a href="">google signin</a>
+			</div>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 
@@ -51,9 +54,6 @@ export default function Blog({entry}) {
 				</section>
 			</>
 			}
-			<button onClick={auth}>
-				Github Signin <span>{'github logo'}</span>
-			</button>
 		</div>
 	)
 }
@@ -87,10 +87,3 @@ export async function getStaticProps({params}) {
 		props: data
 	}
 }
-
-// export async function getServerSideProps(ctx) {
-// 	console.log('ctx: ', ctx);
-// 	return {
-// 		props: {}
-// 	}
-// }
