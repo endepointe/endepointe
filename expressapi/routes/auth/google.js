@@ -2,27 +2,19 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const GitHubStrategy = require('passport-github2').Strategy;
-const GithubUser = require('../../db/auth/github/findOrCreate');
-const headers = [];
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleUser = require('../../db/auth/google/findOrCreate');
 const {getKey, setKey} = require('../../globals');
 
-function clearHeaders() {
-	headers.forEach((header) => {
-		header = '';
-	})
-	headers.length = 0;
-}
-
-passport.use(new GitHubStrategy({
-		clientID: process.env.GITHUB_CLIENT_ID,
-		clientSecret: process.env.GITHUB_CLIENT_SECRET,
-		callbackURL: 'http://localhost:5551/auth/github/callback'
+passport.use(new GoogleStrategy({
+		clientID: process.env.GOOGLE_CLIENT_ID,
+		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		callbackURL: 'http://localhost:5551/auth/google/callback'
 	},
 	async function(accessToken, refreshToken, profile, done) {
-		console.log('in new githubstrategy')
-		console.log('access: ', accessToken);
-		console.log('refresh: ', refreshToken);
+		console.log('in new googletrategy')
+		// console.log('access: ', accessToken);
+		// console.log('refresh: ', refreshToken);
 		console.log('p: ', profile);
 		// console.log('d: ', done);
 		/*
@@ -30,21 +22,18 @@ passport.use(new GitHubStrategy({
 		{
 			id integer,
 			name string,
-			gravatar_id string,
 			avatar_url string,
-			html_url string,
+			provider string,
 		}
 		*/
 		console.log('provider: ', profile.provider)
 		let user = null;
 		switch (profile.provider) {
-			case 'github':
-				user = await GithubUser.findOrCreate({
-					id: profile._json.id, 
+			case 'google':
+				user = await GoogleUser.findOrCreate({
+					id: profile._json.sub, 
 					name: profile._json.name,
-					gravatar_id: profile._json.gravatar_id,
-					avatar_url: profile._json.avatar_url,
-					html_url: profile._json.html_url,
+					avatar_url: profile._json.picture,
 					provider: profile.provider
 				});
 			break;
@@ -58,14 +47,16 @@ passport.use(new GitHubStrategy({
 	}	
 ));
 
-router.get('/github', (req, res, next) => {
-	headers.push(req.get('Referrer'))
+router.get('/google', (req, res, next) => {
+	// headers.push(req.get('Referrer'))
 	// console.log(headers, 'REQ')
 	next();
-}, passport.authenticate('github', { scope: [] }));
+}, passport.authenticate('google', { 
+	scope: ['https://www.googleapis.com/auth/plus.login'] 
+}));
 
-router.get('/github/callback', 
-	passport.authenticate('github', 
+router.get('/google/callback', 
+	passport.authenticate('google', 
 		// dont forget to make a fallback url for the user should anything
 		// go wrong during auth request.
 		{ 
@@ -73,16 +64,14 @@ router.get('/github/callback',
 		}),
 	// Successful authentication, redirect to the original page.
 	function(req, res) {
-		let redirectUrl = headers[1] + headers[0];
-		clearHeaders();
-		console.log("req.query.code: ", req.query.code);
-		console.log('req.user: ', req.user);
-		
+		// console.log("req.query.code: ", req.query.code);
+		// console.log('req.user: ', req.user);
 		setKey(req.query.code);
-
+		// console.log('google req in callback: ', req);
 		console.log('set jwt key: ', getKey()); 
+
 		const token = jwt.sign({
-			id: req.user.id,
+			id: req.user.id, 
 			provider: req.user.provider
 		}, getKey(), {expiresIn: 60*60*24*1000});
 
@@ -91,8 +80,8 @@ router.get('/github/callback',
 					{sameSite: 'Lax'},
 					{expires: new Date(Date.now() + 90000)}
 				)
-				// .redirect(redirectUrl);
 				.redirect('http://localhost:5550/blogs/reply');
 });
+
 module.exports = router;
 

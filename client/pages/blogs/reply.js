@@ -7,7 +7,11 @@ function Reply({user}) {
 	console.log("THE USER: ", user.name);
 
 	useEffect(() => {
-		setName(user.name)
+		try {
+			setName(user.name);
+		} catch(err) {
+			console.error(err);
+		}
 	}, []);
 
 	return (

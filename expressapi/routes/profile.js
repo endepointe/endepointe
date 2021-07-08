@@ -1,5 +1,6 @@
 const express = require('express');
-const User = require('../db/auth/github/findOrCreate');
+const GithubUser = require('../db/auth/github/findOrCreate');
+const GoogleUser = require('../db/auth/google/findOrCreate');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 const {getKey} = require('../globals');
@@ -19,11 +20,23 @@ router.use((req, res, next) => {
 })
 
 router.get('/', async (req, res) => {
-		// console.log('profile req: ', req)
-	let user = await User.findById(req.user.id);
-	console.log('/profile user: ', await user)
-	res.status(200).send(user);
-	// res.status(200).send({msg: 'hello'})
-})
+		console.log('profile req.user: ', req.user)
+		let user;
+		switch (req.user.provider) {
+			case 'github':
+				user = await GithubUser.findById(req.user.id);
+				console.log('/profile user: ', await user)
+				res.status(200).send(user);
+			break;
+			case 'google':
+				user = await GoogleUser.findById(req.user.id);
+				console.log('/profile user: ', await user)
+				res.status(200).send(user);
+			break;
+			default:
+				res.status(401).send({msg: 'something went wrong with user'})
+			break;
+		}
+});
 
 module.exports = router;
