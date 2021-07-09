@@ -1,4 +1,4 @@
-# Root poject details
+# Root project details
 
 ### Table of Contents
 1. About
