@@ -5,6 +5,6 @@
 	1. Projects
 	1. Blogs
 2. Maintenance
-	2.	Authenication
-	2. Database
-	2. Blogs
+	1.	Authenication
+	1. Database
+	1. Blogs
