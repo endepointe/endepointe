@@ -4,7 +4,7 @@ import CreateReply from '../../components/blog_page/CreateReply';
 
 function Reply({user}) {
 	const [name, setName] = useState('')
-	console.log("THE USER: ", user.name);
+	console.log("THE USER: ", user);
 
 	useEffect(() => {
 		try {

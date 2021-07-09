@@ -1,6 +1,7 @@
 const express = require('express');
 const GithubUser = require('../db/auth/github/findOrCreate');
 const GoogleUser = require('../db/auth/google/findOrCreate');
+const TwitterUser = require('../db/auth/twitter/findOrCreate');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 const {getKey} = require('../globals');
@@ -25,12 +26,17 @@ router.get('/', async (req, res) => {
 		switch (req.user.provider) {
 			case 'github':
 				user = await GithubUser.findById(req.user.id);
-				console.log('/profile user: ', await user)
+				console.log('/profile user: ', await user);
 				res.status(200).send(user);
 			break;
 			case 'google':
 				user = await GoogleUser.findById(req.user.id);
-				console.log('/profile user: ', await user)
+				console.log('/profile user: ', await user);
+				res.status(200).send(user);
+			break;
+			case 'twitter':
+				user = await TwitterUser.findById(req.user.id);
+				console.log('/profile user: ', await user);
 				res.status(200).send(user);
 			break;
 			default:

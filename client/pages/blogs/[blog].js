@@ -39,6 +39,7 @@ export default function Blog({entry}) {
 			<div className="authProviders">
 				<a href="http://localhost:5551/auth/github">github Signin</a>
 				<a href="http://localhost:5551/auth/google">google signin</a>
+				<a href="http://localhost:5551/auth/twitter">twitter signin</a>
 			</div>
 			{error ? 'there is no state' : null}
 			<BlogNavbar/>
