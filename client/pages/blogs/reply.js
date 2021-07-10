@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect,useState } from 'react';
 import CreateReply from '../../components/blog_page/CreateReply';
+import {parseCookie} from '../../lib/parseCookie';
 
 function Reply({user}) {
 	const [name, setName] = useState('')
@@ -42,25 +43,8 @@ Reply.getInitialProps = async (ctx) => {
 		throw new Error(ctx.err);
 	}
 	// effectively the same thing as the nookie package.
-	let cookieObj = ctx.req.headers.cookie.split(';');
-	let cookies = [];
-	let authorization = '';
-	cookieObj.forEach(cookie => {
-		cookies.push(cookie.split('='));
-	})
-	cookies.forEach(cookie => {
-		let nc = cookie[0].trim();
-		cookie[0] = nc;
-		switch (cookie[0]) {
-			case 'authorization':
-				authorization = cookie[1];
-			break;
-			default:
-				authorization = null;
-				break;
-		}
-	})
-	const props = await getUser(authorization);
+	const props = await getUser(parseCookie(ctx.req.headers.cookie));
+
 	console.log('props: ', props)
 
 	return {
