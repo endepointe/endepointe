@@ -44,8 +44,24 @@ passport.deserializeUser(async function(user, done) {
 	console.log('user in deserialize: ', user);
 	return done(null, user);
 	*/
-	return done(null);
-})
+	let profile; 
+	switch (user.provider) {
+		case 'github':
+			profile = await GithubUser.findById(user.id)
+		break;
+		case 'google':
+			profile = await GoogleUser.findById(user.id);
+		break;
+		case 'twitter':
+			profile = await TwitterUser.findById(user.id);
+		break;
+		default:
+			profile = null;
+		break;
+	}
+	console.log('deserialized profile: ', profile);
+	return done(null, profile);
+});
 
 app.get('/', function(req, res, next) {
 	res.json({msg: 'i am root'})

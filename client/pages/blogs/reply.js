@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React, { useEffect,useState } from 'react';
+import Layout from '../../components/layouts/Layout';
+import UserNavbar from '../../components/blog_page/UserNavbar';
 import CreateReply from '../../components/blog_page/CreateReply';
 import {parseCookie} from '../../lib/parseCookie';
 
@@ -16,13 +17,10 @@ function Reply({user}) {
 	}, []);
 
 	return (
-		<div>
-			<h1>Welcome {name}</h1>
-			<Link href="/blogs">
-				<a>blogs</a>
-			</Link>
+		<Layout>
+			<UserNavbar/>
 			<CreateReply/>
-		</div>
+		</Layout>
 	)
 }
 

@@ -1,5 +1,6 @@
 import '../../styles/BlogContent.module.css';
-import BlogNavbar from '../../components/blog_page/BlogNavbar';
+import UserNavbar from '../../components/blog_page/UserNavbar';
+import Layout from '../../components/layouts/Layout';
 import {fetcher} from '../../lib/fetcher';
 import { 
 	useEffect, useState 
@@ -35,14 +36,10 @@ export default function Blog({entry}) {
 	}
 
 	return (
-		<div>  
-			<div className="authProviders">
-				<a href="http://localhost:5551/auth/github">github Signin</a>
-				<a href="http://localhost:5551/auth/google">google signin</a>
-				<a href="http://localhost:5551/auth/twitter">twitter signin</a>
-			</div>
+		<Layout>  
+
 			{error ? 'there is no state' : null}
-			<BlogNavbar/>
+			<UserNavbar/>
 			{error ? <h4>Uh oh... no data</h4> : 
 			<>
 				<h5 className="text-xl">{posted}</h5>
@@ -55,7 +52,7 @@ export default function Blog({entry}) {
 				</section>
 			</>
 			}
-		</div>
+		</Layout>
 	)
 }
 
