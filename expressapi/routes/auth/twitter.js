@@ -5,6 +5,8 @@ const passport = require('passport');
 const TwitterStrategy = require('passport-twitter');
 const TwitterUser = require('../../db/auth/twitter/findOrCreate');
 const {getKey, setKey} = require('../../globals');
+const {clearHeaders} = require('../../lib/clearHeaders');
+const headers = [];
 
 passport.use(new TwitterStrategy({
 		consumerKey: process.env.TWITTER_CLIENT_ID,
@@ -12,11 +14,6 @@ passport.use(new TwitterStrategy({
 		callbackURL: 'http://localhost:5551/auth/twitter/callback'
 	},
 	async function(token, tokenSecret, profile, done) {
-		console.log('in new twitterstrategy')
-		// console.log('access: ', accessToken);
-		// console.log('refresh: ', refreshToken);
-		console.log('p: ', profile._json);
-		// console.log('d: ', done);
 		/*
 		information stored
 		{
@@ -26,7 +23,6 @@ passport.use(new TwitterStrategy({
 			provider string,
 		}
 		*/
-		console.log('provider: ', profile.provider)
 		let user = null;
 		switch (profile.provider) {
 			case 'twitter':
@@ -47,8 +43,7 @@ passport.use(new TwitterStrategy({
 ));
 
 router.get('/twitter', (req, res, next) => {
-	// headers.push(req.get('Referrer'))
-	// console.log(headers, 'REQ')
+	headers.push(req.get('Referrer'))
 	next();
 }, passport.authenticate('twitter'));
 
@@ -61,22 +56,20 @@ router.get('/twitter/callback',
 		}),
 	// Successful authentication, redirect to the original page.
 	function(req, res) {
-		console.log("req.query.oauth_token: ", req.query.oauth_token);
-		// console.log('req.user: ', req.user);
+		let redirectUrl = headers[1] + headers[0];
+		clearHeaders(headers);
 		setKey(req.query.oauth_token);
-		// console.log('twitter req in callback: ', req);
-		console.log('set jwt key: ', getKey()); 
 		const token = jwt.sign({
 			id: req.user.id, 
 			provider: req.user.provider
 		}, getKey(), {expiresIn: 60*60*24*1000});
-
 		res.status(201).cookie(
 					'authorization', token, 
 					{sameSite: 'Lax'},
 					{expires: new Date(Date.now() + 90000)}
 				)
-				.redirect('http://localhost:5550/blogs/reply');
+				.redirect(redirectUrl);
+				// .redirect('http://localhost:5550/blogs/reply');
 });
 
 module.exports = router;

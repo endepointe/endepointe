@@ -5,6 +5,8 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GoogleUser = require('../../db/auth/google/findOrCreate');
 const {getKey, setKey} = require('../../globals');
+const {clearHeaders} = require('../../lib/clearHeaders');
+const headers = [];
 
 passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENT_ID,
@@ -48,8 +50,7 @@ passport.use(new GoogleStrategy({
 ));
 
 router.get('/google', (req, res, next) => {
-	// headers.push(req.get('Referrer'))
-	// console.log(headers, 'REQ')
+	headers.push(req.get('Referrer'))
 	next();
 }, passport.authenticate('google', { 
 	scope: ['https://www.googleapis.com/auth/plus.login'] 
@@ -64,23 +65,20 @@ router.get('/google/callback',
 		}),
 	// Successful authentication, redirect to the original page.
 	function(req, res) {
-		// console.log("req.query.code: ", req.query.code);
-		// console.log('req.user: ', req.user);
+		let redirectUrl = headers[1] + headers[0];
+		clearHeaders(headers);
 		setKey(req.query.code);
-		// console.log('google req in callback: ', req);
-		console.log('set jwt key: ', getKey()); 
-
 		const token = jwt.sign({
 			id: req.user.id, 
 			provider: req.user.provider
 		}, getKey(), {expiresIn: 60*60*24*1000});
-
 		res.status(201).cookie(
 					'authorization', token, 
 					{sameSite: 'Lax'},
 					{expires: new Date(Date.now() + 90000)}
 				)
-				.redirect('http://localhost:5550/blogs/reply');
+				.redirect(redirectUrl);
+				// .redirect('http://localhost:5550/blogs/reply');
 });
 
 module.exports = router;

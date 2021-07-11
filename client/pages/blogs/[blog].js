@@ -1,6 +1,7 @@
 import '../../styles/BlogContent.module.css';
 import UserNavbar from '../../components/blog_page/UserNavbar';
 import Layout from '../../components/layouts/Layout';
+import MessageBoard from '../../components/blog_page/MessageBoard';
 import {fetcher} from '../../lib/fetcher';
 import { 
 	useEffect, useState 
@@ -24,22 +25,11 @@ export default function Blog({entry}) {
 			setContent(entry.content);
 	}, []);
 
-	const auth = () => {
-		let url = 'http://localhost:5551/auth/github'
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', url);
-		xhr.setRequestHeader('Referrer', `blogs/${id}`);
-		xhr.onreadystatechange = function() {
-			window.location = url;
-		}
-		xhr.send();
-	}
-
 	return (
 		<Layout>  
 
 			{error ? 'there is no state' : null}
-			<UserNavbar/>
+			<UserNavbar id={id}/>
 			{error ? <h4>Uh oh... no data</h4> : 
 			<>
 				<h5 className="text-xl">{posted}</h5>
@@ -52,6 +42,12 @@ export default function Blog({entry}) {
 				</section>
 			</>
 			}
+			<MessageBoard 
+				id={id}
+				title={title}
+				modified={modified}
+				posted={posted}
+				content={content} />
 		</Layout>
 	)
 }

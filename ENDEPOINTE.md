@@ -14,8 +14,20 @@
 ## Structure
 
 ### Authentication
-To be able to post a reply to any of the blogs, a user must login with an 
-authenticatoin provider. The authentication method used is [OAuth2.0](https://oauth.net/2/).
+Flow:
+-> Site checks if authorization token is present as a cookie
+-> If there is a cookie, get the profile
+-> If no cookie is found, do nothing
+-> When a user chooses to make a blog post, they must first be authenticated
+		with one of the providers listed below. 
+-> If their cookie is present, they will be shown their profile name and the
+		button to reply to post.
+-> If their cookie is not present, they will be shown the options to 
+		authenticate with one of the providers listed below.
+-> Once they have been authenticated, they will be directed to the reply 
+		page.
+
+The authentication method used is [OAuth2.0](https://oauth.net/2/).
 
 The authentication providers implemented:
 - GitHub
@@ -24,10 +36,7 @@ The authentication providers implemented:
 - LinkedIn (in progress)
 - Facebook (in progress)
 
-Once a user has successfully logged in, any returns to the site should 
-automatically find the user with the provided token.
-
 If a user wishes to remove the token, they will be able to log out. The site
-does not require the user to log in to view the content. A log in action is
+does not require the user to log in to view the content. A log in action 
 will only be required if the user wishes to add their thoughts to the blog
 posts. For this reason, a log in option in the nav bar is not required.

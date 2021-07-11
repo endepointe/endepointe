@@ -4,15 +4,9 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const GithubUser = require('../../db/auth/github/findOrCreate');
-const headers = [];
 const {getKey, setKey} = require('../../globals');
-
-function clearHeaders() {
-	headers.forEach((header) => {
-		header = '';
-	})
-	headers.length = 0;
-}
+const {clearHeaders} = require('../../lib/clearHeaders')
+const headers = [];
 
 passport.use(new GitHubStrategy({
 		clientID: process.env.GITHUB_CLIENT_ID,
@@ -60,7 +54,6 @@ passport.use(new GitHubStrategy({
 
 router.get('/github', (req, res, next) => {
 	headers.push(req.get('Referrer'))
-	// console.log(headers, 'REQ')
 	next();
 }, passport.authenticate('github', { scope: [] }));
 
@@ -74,7 +67,7 @@ router.get('/github/callback',
 	// Successful authentication, redirect to the original page.
 	function(req, res) {
 		let redirectUrl = headers[1] + headers[0];
-		clearHeaders();
+		clearHeaders(headers);
 		console.log("req.query.code: ", req.query.code);
 		console.log('req.user: ', req.user);
 		
@@ -91,8 +84,8 @@ router.get('/github/callback',
 					{sameSite: 'Lax'},
 					{expires: new Date(Date.now() + 90000)}
 				)
-				// .redirect(redirectUrl);
-				.redirect('http://localhost:5550/blogs/reply');
+				.redirect(redirectUrl);
+				// .redirect('http://localhost:5550/blogs/reply');
 });
 module.exports = router;
 

@@ -3,6 +3,7 @@ import Layout from '../../components/layouts/Layout';
 import UserNavbar from '../../components/blog_page/UserNavbar';
 import CreateReply from '../../components/blog_page/CreateReply';
 import {parseCookie} from '../../lib/parseCookie';
+import {getUser} from '../../lib/getUser';
 
 function Reply({user}) {
 	const [name, setName] = useState('')
@@ -22,18 +23,6 @@ function Reply({user}) {
 			<CreateReply/>
 		</Layout>
 	)
-}
-
-async function getUser(authorization) {
-	const res = await fetch('http://localhost:5551/profile', {
-		headers: {
-			authorization
-		}
-	});
-	let data = await res.json();
-	console.log('getUser returns: ', data)
-	if (res.status === 200) return {authorization, user: data}
-	else return {authorization}
 }
 
 Reply.getInitialProps = async (ctx) => {
