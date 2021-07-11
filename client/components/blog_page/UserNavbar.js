@@ -6,31 +6,11 @@ import {getUser} from '../../lib/getUser';
 // site after authenticating.
 const UserNavbar = (props) => {
 
-	const auth = (provider) => {
-		let url = `http://localhost:5551/auth/${provider}`
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', url);
-		xhr.setRequestHeader('Referrer', `blogs/${props.id}/#reply`);
-		xhr.onreadystatechange = function() {
-			window.location = url;
-		}
-		xhr.send();
-	}
-
 	return (
-		<nav className="flex">
-			<div className="blogNavbarTitle">
+		<nav>
+			<div>
 				<span><span></span>EndePointe</span>
-				<p className="block w-16">Thoughts, lessons learned, and a place to share ideas.</p>
-			</div>
-			{/* place these auth options within a modal
-				and then ask the user to auth if no cookie is
-				present. if a cookie is present, get their
-				profile data and allow them to post a reply */}
-			<div className={styles.authProviders}>
-				<button onClick={()=>auth('github')}>GitHub Sign in</button>
-				<button onClick={()=>auth('google')}>Google Sign in</button>
-				<button onClick={()=>auth('twitter')}>Twitter Sign in</button>
+				<p>Thoughts, lessons learned, and a place to share ideas.</p>
 			</div>
 			<h3>Welcome User</h3>
 			<ul>

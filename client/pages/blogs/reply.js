@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import Layout from '../../components/layouts/Layout';
 import UserNavbar from '../../components/blog_page/UserNavbar';
-import CreateReply from '../../components/blog_page/CreateReply';
 import {parseCookie} from '../../lib/parseCookie';
 import {getUser} from '../../lib/getUser';
 
@@ -20,7 +19,6 @@ function Reply({user}) {
 	return (
 		<Layout>
 			<UserNavbar/>
-			<CreateReply/>
 		</Layout>
 	)
 }

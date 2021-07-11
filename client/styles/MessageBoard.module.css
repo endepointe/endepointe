@@ -1,5 +1,10 @@
 @media screen and (min-width: 0px) {
-
+	.authProviders {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
 }
 @media screen and (min-width: 640px) {
 }

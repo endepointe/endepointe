@@ -31,7 +31,7 @@ ICONS
   - https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
   - https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting 
   */
-  *, #logo {
+  #logo {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */

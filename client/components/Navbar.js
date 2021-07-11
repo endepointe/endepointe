@@ -12,27 +12,19 @@ export default function Navbar() {
     return;
   }
   return (
-    <nav className={styles.nav}>
-      <div
-        id="logo"
-        className={styles.logo}>
-        <h3
-          className={styles.ende}
-          id="ende">ENDE</h3>
-        <h3
-          id="pointe"
-          className={styles.pointe}>POINTE</h3>
+    <nav>
+      <div>
+        <h3>ENDE</h3>
+        <h3>POINTE</h3>
       </div>
       <ul className={styles.navLinks}>
         <li
-          className={styles.navLink}
           onClick={test}>
             <Link href="/">
               <a>Home</a> 
             </Link>
         </li>
         <li
-          className={styles.navLink}
           onClick={test}>
             <Link href="/blogs">
               <a>Blog</a>   

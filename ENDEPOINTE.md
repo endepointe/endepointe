@@ -7,7 +7,7 @@
 2. [Structure](#Structure)
 	1. Authentication
 3. Maintenance
-	1.	Authentication
+	1. Authentication
 	1. Database
 	1. Blogs
 
