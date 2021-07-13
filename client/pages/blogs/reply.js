@@ -27,14 +27,10 @@ Reply.getInitialProps = async (ctx) => {
 	if (ctx.err) {
 		throw new Error(ctx.err);
 	}
-	// effectively the same thing as the nookie package.
-	const props = await getUser(parseCookie(ctx.req.headers.cookie));
 
-	console.log('props: ', props)
-
-	return {
-		user: props.user 
-	}
+	const res = fetch('http://localhost:5550/api/profile');
+	const data = await res;
+	return {stuff: data}
 }
 
 export default Reply;
