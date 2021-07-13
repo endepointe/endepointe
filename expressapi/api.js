@@ -38,12 +38,6 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(async function(user, done) {
-	console.log('deserialize user: ', user);
-	/*
-	const user = await User.findById(id);
-	console.log('user in deserialize: ', user);
-	return done(null, user);
-	*/
 	let profile; 
 	switch (user.provider) {
 		case 'github':

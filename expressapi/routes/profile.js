@@ -8,12 +8,10 @@ const {getKey} = require('../globals');
 
 router.use((req, res, next) => {
 	const token = req.headers['authorization'];
-	// console.log("jwt key in /profile", getKey());
 	jwt.verify(token, getKey(), function(err, data) {
 		if (err) {
 			res.status(401).send({error: 'Not Authorized'});
 		} else {
-			console.log('jwt verified: ', data )
 			req.user = data;
 			next();
 		}
@@ -21,22 +19,18 @@ router.use((req, res, next) => {
 })
 
 router.get('/', async (req, res) => {
-		console.log('profile req.user: ', req.user)
 		let user;
 		switch (req.user.provider) {
 			case 'github':
 				user = await GithubUser.findById(req.user.id);
-				console.log('/profile user: ', await user);
 				res.status(200).send(user);
 			break;
 			case 'google':
 				user = await GoogleUser.findById(req.user.id);
-				console.log('/profile user: ', await user);
 				res.status(200).send(user);
 			break;
 			case 'twitter':
 				user = await TwitterUser.findById(req.user.id);
-				console.log('/profile user: ', await user);
 				res.status(200).send(user);
 			break;
 			default:

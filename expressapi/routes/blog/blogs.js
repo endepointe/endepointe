@@ -21,7 +21,6 @@ router.get('/one', (req, res) => {
 
 // /blogs/:id
 router.get('/:id', async (req, res) => {
-	console.log(req.params.id)
 	let entry = await read.entry(req.params.id)
 	res.status(200).json({entry});
 });

@@ -69,7 +69,6 @@ router.get('/twitter/callback',
 					{expires: new Date(Date.now() + 90000)}
 				)
 				.redirect(redirectUrl);
-				// .redirect('http://localhost:5550/blogs/reply');
 });
 
 module.exports = router;

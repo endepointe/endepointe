@@ -14,11 +14,6 @@ passport.use(new GoogleStrategy({
 		callbackURL: 'http://localhost:5551/auth/google/callback'
 	},
 	async function(accessToken, refreshToken, profile, done) {
-		console.log('in new googletrategy')
-		// console.log('access: ', accessToken);
-		// console.log('refresh: ', refreshToken);
-		console.log('p: ', profile);
-		// console.log('d: ', done);
 		/*
 		information stored
 		{
@@ -28,7 +23,6 @@ passport.use(new GoogleStrategy({
 			provider string,
 		}
 		*/
-		console.log('provider: ', profile.provider)
 		let user = null;
 		switch (profile.provider) {
 			case 'google':
@@ -78,7 +72,6 @@ router.get('/google/callback',
 					{expires: new Date(Date.now() + 90000)}
 				)
 				.redirect(redirectUrl);
-				// .redirect('http://localhost:5550/blogs/reply');
 });
 
 module.exports = router;

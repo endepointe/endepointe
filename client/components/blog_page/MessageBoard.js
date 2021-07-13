@@ -8,7 +8,7 @@ import useSWR from 'swr';
 function MessageBoard(props) {
 	const [loggedIn, hasLoggedIn] = useState(false);
 
-	console.log('mb props: ', props.id)
+	console.log('mb props: ', props)
 
 	return (
 		<div>
@@ -38,13 +38,5 @@ function MessageBoard(props) {
 		</div>
 	);
 }
-
-// async function Profile() {
-// 	const {data, error} = useSWR('/api/profile', fetch);
-// 	console.log('profile data: ', data);
-// 	if (error) return <div>failed to get profile</div>
-// 	if (!data) return <div>loading...</div>
-// 	return <div>have profile</div>
-// }
 
 export default MessageBoard;

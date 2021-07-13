@@ -14,10 +14,10 @@ passport.use(new GitHubStrategy({
 		callbackURL: 'http://localhost:5551/auth/github/callback'
 	},
 	async function(accessToken, refreshToken, profile, done) {
-		console.log('in new githubstrategy')
-		console.log('access: ', accessToken);
-		console.log('refresh: ', refreshToken);
-		console.log('p: ', profile);
+		// console.log('in new githubstrategy')
+		// console.log('access: ', accessToken);
+		// console.log('refresh: ', refreshToken);
+		// console.log('p: ', profile);
 		// console.log('d: ', done);
 		/*
 		information stored
@@ -29,7 +29,7 @@ passport.use(new GitHubStrategy({
 			html_url string,
 		}
 		*/
-		console.log('provider: ', profile.provider)
+		// console.log('provider: ', profile.provider)
 		let user = null;
 		switch (profile.provider) {
 			case 'github':
@@ -68,12 +68,12 @@ router.get('/github/callback',
 	function(req, res) {
 		let redirectUrl = headers[1] + headers[0];
 		clearHeaders(headers);
-		console.log("req.query.code: ", req.query.code);
-		console.log('req.user: ', req.user);
+		// console.log("req.query.code: ", req.query.code);
+		// console.log('req.user: ', req.user);
 		
 		setKey(req.query.code);
 
-		console.log('set jwt key: ', getKey()); 
+		// console.log('set jwt key: ', getKey()); 
 		const token = jwt.sign({
 			id: req.user.id,
 			provider: req.user.provider
@@ -85,7 +85,6 @@ router.get('/github/callback',
 					{expires: new Date(Date.now() + 90000)}
 				)
 				.redirect(redirectUrl);
-				// .redirect('http://localhost:5550/blogs/reply');
 });
 module.exports = router;
 
