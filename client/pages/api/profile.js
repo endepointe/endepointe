@@ -2,7 +2,6 @@ import {parseCookie} from '../../lib/parseCookie';
 import {getUser} from '../../lib/getUser';
 
 export default async function handler(req, res) {
-	// console.log('headers from /api/profile: ', req.headers.cookie);
 	console.log('auth cookie from header: ', parseCookie(req.headers.cookie));
 	let profile; 
 	try {
