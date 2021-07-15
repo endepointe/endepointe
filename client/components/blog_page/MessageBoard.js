@@ -8,37 +8,30 @@ import useSWR from 'swr';
 function MessageBoard(props) {
 	const {data, error} = useSWR('/api/profile', fetcher);
 	const [loggedIn, hasLoggedIn] = useState(false);
-
-	if (error) return <div>failed to find profile</div>
-	if (!data) return <div>loading...</div>
-
 	console.log(data);
-
-	return (
-		<div>
-			create the message board components here
-			{/* {
-				loggedIn 
-				? 
-				<CreateReply/> 
-				: 
+	if (error) {
+		return (
+			<div>
 				<Link 
 					href={{
-						pathname: '/auth',
-						query: {id: props.id}
-					}}>
-					<a>Choose a provider</a>
-				</Link>
-			} */}
-			<Link 
-				href={{
 					pathname: '/auth',
 					query: {id: props.id}
 				}}>
-				<a>Choose a provider</a>
-			</Link>
-			{/* <Profile/> */}
-			<CreateReply/> 
+					<a>Choose a provider</a>
+				</Link>
+			</div>
+		)
+	}
+
+	if (!data) return <div>loading...</div>
+
+	return (
+		<div>
+			<div>
+				<p>Welcome {data.name}</p>
+				<img src={data.avatar_url} alt="profile image" />
+				<CreateReply profile={data}/>
+			</div>
 		</div>
 	);
 }

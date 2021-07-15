@@ -13,5 +13,5 @@ export default async function handler(req, res) {
 		res.status(401).send({msg: 'profile error'});
 	}
 	console.log('profile.user: ', profile.user);
-	res.json({data: profile.user});
+	res.json(profile.user);
 }

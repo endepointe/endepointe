@@ -14,11 +14,6 @@ passport.use(new GitHubStrategy({
 		callbackURL: 'http://localhost:5551/auth/github/callback'
 	},
 	async function(accessToken, refreshToken, profile, done) {
-		// console.log('in new githubstrategy')
-		// console.log('access: ', accessToken);
-		// console.log('refresh: ', refreshToken);
-		// console.log('p: ', profile);
-		// console.log('d: ', done);
 		/*
 		information stored
 		{
@@ -29,7 +24,6 @@ passport.use(new GitHubStrategy({
 			html_url string,
 		}
 		*/
-		// console.log('provider: ', profile.provider)
 		let user = null;
 		switch (profile.provider) {
 			case 'github':
@@ -59,8 +53,6 @@ router.get('/github', (req, res, next) => {
 
 router.get('/github/callback', 
 	passport.authenticate('github', 
-		// dont forget to make a fallback url for the user should anything
-		// go wrong during auth request.
 		{ 
 			failureRedirect: 'http://localhost:5550' 
 		}),
@@ -68,21 +60,19 @@ router.get('/github/callback',
 	function(req, res) {
 		let redirectUrl = headers[1] + headers[0];
 		clearHeaders(headers);
-		// console.log("req.query.code: ", req.query.code);
-		// console.log('req.user: ', req.user);
 		
 		setKey(req.query.code);
 
-		// console.log('set jwt key: ', getKey()); 
+		// 12 hour expriation token and cookie
 		const token = jwt.sign({
 			id: req.user.id,
 			provider: req.user.provider
-		}, getKey(), {expiresIn: 60*60*24*1000});
+		}, getKey(), {expiresIn: 43200000});
 
 		res.status(201).cookie(
 					'authorization', token, 
 					{sameSite: 'Lax'},
-					{expires: new Date(Date.now() + 90000)}
+					{expires: new Date(Date.now() + 43200000)}
 				)
 				.redirect(redirectUrl);
 });

@@ -39,4 +39,10 @@ router.get('/', async (req, res) => {
 		}
 });
 
+router.get('/logout', (req, res) => {
+	console.log('logout request: ', req.user);
+	req.logout();
+	res.redirect('http://localhost:5550/');
+});
+
 module.exports = router;

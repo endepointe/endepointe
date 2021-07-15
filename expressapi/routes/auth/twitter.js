@@ -59,14 +59,16 @@ router.get('/twitter/callback',
 		let redirectUrl = headers[1] + headers[0];
 		clearHeaders(headers);
 		setKey(req.query.oauth_token);
+
+		// token and cookie expire in 12 hours
 		const token = jwt.sign({
 			id: req.user.id, 
 			provider: req.user.provider
-		}, getKey(), {expiresIn: 60*60*24*1000});
+		}, getKey(), {expiresIn: 43200000});
 		res.status(201).cookie(
 					'authorization', token, 
 					{sameSite: 'Lax'},
-					{expires: new Date(Date.now() + 90000)}
+					{expires: new Date(Date.now() + 43200000)}
 				)
 				.redirect(redirectUrl);
 });

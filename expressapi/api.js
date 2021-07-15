@@ -23,7 +23,7 @@ app.use(session({
 	secret: 'allyourbasearebelongtous',	
 }))
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/blogs', blogRoute);
