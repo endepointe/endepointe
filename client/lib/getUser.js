@@ -2,7 +2,7 @@ const getUser = async (authorization) => {
 	try {
 		const res = await fetch('http://localhost:5551/profile', {
 			headers: {
-				authorization
+				authorization: authorization 
 			}
 		});
 		let data = await res.json();
