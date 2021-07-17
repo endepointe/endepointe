@@ -7,8 +7,10 @@ import {
 	useEffect, useState 
 } from 'react';
 import ReactMarkdown from 'react-markdown';
+import useSWR from 'swr';
 
 export default function Blog({entry}) {
+	const {data, err} = useSWR('/api/profile', fetcher);
 	const [id, setId] = useState('');
 	const	[title, setTitle] = useState('');
 	const [posted, setPosted] = useState('');
@@ -16,13 +18,15 @@ export default function Blog({entry}) {
 	const [content, setContent] = useState('');
 	const [error, setError] = useState(false);
 
+	console.log('data: ', data, 'err: ', err);
+
 	useEffect(() => {
-			if (!entry) { setError(true); }
-			setId(entry.id);
-			setTitle(entry.title);
-			setPosted(entry.posted);
-			setModified(entry.modified);
-			setContent(entry.content);
+		if (!entry) { setError(true); }
+		setId(entry.id);
+		setTitle(entry.title);
+		setPosted(entry.posted);
+		setModified(entry.modified);
+		setContent(entry.content);
 	}, []);
 
 	return (
