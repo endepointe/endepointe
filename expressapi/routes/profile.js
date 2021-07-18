@@ -21,8 +21,8 @@ router.use((req, res, next) => {
 			req.user = data;
 			next();
 		}
-	})
-})
+	});
+});
 
 router.get('/', async (req, res) => {
 	let user;
@@ -48,6 +48,11 @@ router.get('/', async (req, res) => {
 		console.error('/profile.error: ',err.name, err.message, err.lineNumber);
 		res.status(501).send({msg: 'handling error'});
 	}
+});
+
+router.get('/logout', (req,res) => {
+	console.log('/logout req: ', req);
+	res.json({msg: 'logout user'});
 });
 
 module.exports = router;

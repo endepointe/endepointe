@@ -18,6 +18,7 @@ export default function Blog({entry}) {
 	const [modified, setModified] = useState('');
 	const [content, setContent] = useState('');
 	const [error, setError] = useState(false);
+	const [user, setUser] = useState({});
 
 	// console.log('data: ', data, 'err: ', err);
 
@@ -27,7 +28,12 @@ export default function Blog({entry}) {
 				authorization: parseCookie(document.cookie),
 			}
 		}).then(res => res.json())
-			.then(data => console.log(data));
+			.then(data => {
+				setUser(data);
+				console.log('user: ', data);
+			})
+			.catch(err => console.error(err));
+
 		if (!entry) { setError(true); }
 		setId(entry.id);
 		setTitle(entry.title);
@@ -38,14 +44,15 @@ export default function Blog({entry}) {
 
 	return (
 		<Layout>  
-
-			{error ? 'there is no state' : null}
-			<UserNavbar id={id}/>
+			<UserNavbar 
+				user={user}
+				id={id}/>
 			{error ? <h4>Uh oh... no data</h4> : 
 			<>
-				<h5 className="text-xl">{posted}</h5>
-				<h6 className="text-xl">{modified}</h6>
-				<h3 className="text-5xl">{title}</h3>
+
+				<h5>{posted}</h5>
+				<h6>{modified}</h6>
+				<h3>{title}</h3>
 				<section>
 					<ReactMarkdown>
 						{content}
@@ -54,6 +61,7 @@ export default function Blog({entry}) {
 			</>
 			}
 			<MessageBoard 
+				user={user}
 				id={id}
 				title={title}
 				modified={modified}

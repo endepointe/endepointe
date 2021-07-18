@@ -1,23 +1,32 @@
 const styles = require( '../../styles/MessageBoard.module.css');
 import Link from 'next/link';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import CreateReply from './CreateReply';
 
 function MessageBoard(props) {
-	const [loggedIn, hasLoggedIn] = useState(false);
+	console.log('messageboard: ', props.user.name);
+	// const [authed, hasAuthed] = useState(Boolean);
+	// useEffect(() => {
+	// 	if (props.user.name) {
+	// 		hasAuthed(true);
+	// 	} else {hasAuthed(false);}
+	// }, []);
 
 	return (
 		<div>
-			<div>
+			{ 
+				props.user.name
+				? 
 				<CreateReply />
-			</div>
-			<Link 
-				href={{
-				pathname: '/auth',
-				query: {id: props.id}
-			}}>
-				<a>Choose a provider</a>
-			</Link>
+				:
+				<Link 
+					href={{
+					pathname: '/auth',
+					query: {id: props.id}
+				}}>
+					<a>Choose a provider</a>
+				</Link>
+			}
 		</div>
 	);
 }
