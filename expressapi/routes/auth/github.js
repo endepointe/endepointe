@@ -61,7 +61,7 @@ router.get('/github/callback',
 		let redirectUrl = headers[1] + headers[0];
 		clearHeaders(headers);
 		
-		setKey(req.query.code);
+		// setKey(req.query.code);
 
 		// 12 hour expriation token and cookie
 		const token = jwt.sign({
